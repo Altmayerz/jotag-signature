@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Checkout · JotaG Signature</title>
+  <meta name="description" content="Finalize sua compra na JotaG Signature: Pix, cartão em até 10x ou boleto, frete grátis acima de R$ 500 e troca grátis em 30 dias.">
+  <meta name="theme-color" content="#3b4454">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- chegando da sacola: a tela de passagem (ardósia com o logo) já está na primeira pintura e sobe quando a página
+       monta (src/checkout.js) -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try { if (sessionStorage.getItem('nix-passagem')) { d.classList.add('chegando'); sessionStorage.removeItem('nix-passagem'); } } catch (e) {}
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduzido');
+      if (matchMedia('(hover: none)').matches) d.classList.add('toque');
+      setTimeout(function () { if (!window.__nixViva) d.classList.remove('js', 'chegando'); }, 4000);
+    })();
+  </script>
+  <style>
+    html { background: #e6e8eb; color: #121418; }
+    html.chegando { background: #3b4454; }
+    body { margin: 0; }
+    html:not(.assentou) *, html:not(.assentou) *::before, html:not(.assentou) *::after { transition: none !important; }
+  </style>
+  <link rel="preload" href="/node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/src/styles/checkout-site.css">
+</head>
+<body class="pag-checkout">
+  <div class="passagem" data-passagem aria-hidden="true">
+    <!-- @svg logo passagem__logo -->
+    <p class="passagem__txt">Checkout</p>
+  </div>
+
+  <!-- @secao topo-checkout -->
+
+  <main class="checkout" id="conteudo">
+    <div class="wrap">
+      <nav class="migalha" aria-label="Você está em"><a href="index.html">Início</a><span aria-hidden="true">/</span><a href="index.html">Sacola</a><span aria-hidden="true">/</span><span aria-current="page">Checkout</span></nav>
+      <div class="checkout__topo">
+        <h1 class="checkout__titulo">Checkout</h1>
+        <p class="checkout__seguro"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4.5" y="9" width="11" height="8" rx="2"/><path d="M7 9V7a3 3 0 0 1 6 0v2"/></svg>Pagamento seguro · troca grátis em 30 dias</p>
+      </div>
+
+      <div class="checkout__grade" data-grade-checkout>
+        <form class="pedido" data-pedido novalidate>
+          <section class="bloco bloco--expresso" aria-labelledby="expresso-titulo">
+            <h2 class="bloco__rotulo" id="expresso-titulo">Pagamento expresso</h2>
+            <div class="expresso">
+              <button class="expresso__b expresso__b--pix" type="button" data-expresso="pix"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z"/><path d="m8.2 12 3.8-3.8 3.8 3.8-3.8 3.8Z"/></svg>Pix</button>
+              <button class="expresso__b" type="button" data-expresso="apple">Apple Pay</button>
+              <button class="expresso__b expresso__b--claro" type="button" data-expresso="google">Google Pay</button>
+            </div>
+            <p class="bloco__ou"><span>ou preencha os dados</span></p>
+          </section>
+
+          <fieldset class="bloco">
+            <legend class="bloco__titulo"><span class="bloco__n">01</span>Contato</legend>
+            <div class="campos">
+              <div class="campo campo--cheio"><input id="c-email" name="email" type="email" autocomplete="email" placeholder=" " required><label for="c-email">E-mail</label><p class="campo__erro">Confira o e-mail.</p></div>
+              <label class="marca-check"><input type="checkbox" name="novidades" checked><span class="marca-check__caixa" aria-hidden="true"></span>Quero saber dos drops antes de todo mundo</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="bloco">
+            <legend class="bloco__titulo"><span class="bloco__n">02</span>Entrega</legend>
+            <div class="campos">
+              <div class="campo campo--cheio"><input id="c-nome" name="nome" autocomplete="name" placeholder=" " required><label for="c-nome">Nome completo</label><p class="campo__erro">Escreva o nome de quem recebe.</p></div>
+              <div class="campo"><input id="c-cep" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder=" " maxlength="9" required data-mascara="cep"><label for="c-cep">CEP</label><p class="campo__erro">CEP com 8 números.</p></div>
+              <div class="campo"><input id="c-uf" name="uf" autocomplete="address-level1" placeholder=" " maxlength="2" required data-mascara="uf"><label for="c-uf">Estado (UF)</label><p class="campo__erro">Duas letras.</p></div>
+              <div class="campo campo--cheio"><input id="c-end" name="endereco" autocomplete="address-line1" placeholder=" " required><label for="c-end">Endereço</label><p class="campo__erro">Falta o endereço.</p></div>
+              <div class="campo"><input id="c-num" name="numero" inputmode="numeric" placeholder=" " required><label for="c-num">Número</label><p class="campo__erro">Falta o número.</p></div>
+              <div class="campo"><input id="c-comp" name="complemento" autocomplete="address-line2" placeholder=" "><label for="c-comp">Complemento (opcional)</label></div>
+              <div class="campo"><input id="c-bairro" name="bairro" placeholder=" " required><label for="c-bairro">Bairro</label><p class="campo__erro">Falta o bairro.</p></div>
+              <div class="campo"><input id="c-cidade" name="cidade" autocomplete="address-level2" placeholder=" " required><label for="c-cidade">Cidade</label><p class="campo__erro">Falta a cidade.</p></div>
+            </div>
+            <div class="opcoes" role="radiogroup" aria-label="Frete" data-frete-opcoes>
+              <label class="opcao"><input type="radio" name="frete" value="expressa" checked><span class="opcao__txt"><strong>Expressa</strong><span>2 a 4 dias úteis</span></span><span class="opcao__preco" data-preco-frete="expressa">Grátis</span></label>
+              <label class="opcao"><input type="radio" name="frete" value="economica"><span class="opcao__txt"><strong>Econômica</strong><span>6 a 9 dias úteis</span></span><span class="opcao__preco" data-preco-frete="economica">Grátis</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="bloco">
+            <legend class="bloco__titulo"><span class="bloco__n">03</span>Pagamento</legend>
+            <div class="abas" role="tablist" aria-label="Forma de pagamento">
+              <button class="aba is-ativa" type="button" role="tab" aria-selected="true" aria-controls="pg-cartao" id="aba-cartao" data-aba="cartao">Cartão</button>
+              <button class="aba" type="button" role="tab" aria-selected="false" aria-controls="pg-pix" id="aba-pix" data-aba="pix" tabindex="-1">Pix <span class="aba__selo">−5%</span></button>
+              <button class="aba" type="button" role="tab" aria-selected="false" aria-controls="pg-boleto" id="aba-boleto" data-aba="boleto" tabindex="-1">Boleto</button>
+              <span class="abas__marca" aria-hidden="true"></span>
+            </div>
+            <div class="painel" id="pg-cartao" role="tabpanel" aria-labelledby="aba-cartao">
+              <div class="campos">
+                <div class="campo campo--cheio"><input id="c-cartao" name="cartao" inputmode="numeric" autocomplete="cc-number" placeholder=" " maxlength="19" data-mascara="cartao" data-pagamento="cartao" required><label for="c-cartao">Número do cartão</label><p class="campo__erro">Confira o número do cartão.</p></div>
+                <div class="campo"><input id="c-val" name="validade" inputmode="numeric" autocomplete="cc-exp" placeholder=" " maxlength="5" data-mascara="validade" data-pagamento="cartao" required><label for="c-val">Validade (MM/AA)</label><p class="campo__erro">Mês e ano.</p></div>
+                <div class="campo"><input id="c-cvv" name="cvv" inputmode="numeric" autocomplete="cc-csc" placeholder=" " maxlength="4" data-mascara="cvv" data-pagamento="cartao" required><label for="c-cvv">CVV</label><p class="campo__erro">3 ou 4 números.</p></div>
+                <div class="campo campo--cheio"><input id="c-titular" name="titular" autocomplete="cc-name" placeholder=" " data-pagamento="cartao" required><label for="c-titular">Nome impresso no cartão</label><p class="campo__erro">Como está no cartão.</p></div>
+              </div>
+              <div class="parcelas" role="radiogroup" aria-label="Parcelas" data-parcelas-opcoes></div>
+            </div>
+            <div class="painel" id="pg-pix" role="tabpanel" aria-labelledby="aba-pix" hidden>
+              <p class="painel__info">O QR Code aparece quando você finalizar e vale por 30 minutos. No Pix o pedido sai com <strong>5% de desconto</strong>.</p>
+            </div>
+            <div class="painel" id="pg-boleto" role="tabpanel" aria-labelledby="aba-boleto" hidden>
+              <p class="painel__info">O boleto vence em 2 dias úteis. O pedido é separado assim que o pagamento é compensado.</p>
+            </div>
+          </fieldset>
+
+          <button class="botao botao--escuro pedido__finalizar" type="submit" data-finalizar-pedido><span class="botao__txt">Finalizar pedido</span><span class="botao__preco" data-total-botao>R$ 0,00</span></button>
+          <p class="pedido__nota">Ao finalizar, você concorda com os termos de compra e a política de trocas.</p>
+        </form>
+
+        <aside class="resumo" aria-labelledby="resumo-titulo">
+          <img class="resumo__img" src="img/caixa.webp" alt="A jaqueta preta dobrada dentro da caixa, com papel de seda" width="900" height="600">
+          <div class="resumo__corpo">
+            <div class="resumo__topo"><h2 class="resumo__titulo" id="resumo-titulo">Sua sacola</h2><a class="resumo__editar" href="index.html">Editar</a></div>
+            <ul class="resumo__itens" data-resumo-itens></ul>
+            <p class="resumo__vazia" data-resumo-vazia hidden>Sua sacola está vazia. <a href="index.html#colecao">Voltar à loja</a></p>
+            <form class="cupom" data-cupom novalidate><label class="sr" for="c-cupom">Cupom</label><input id="c-cupom" placeholder="Cupom de desconto" autocomplete="off"><button type="submit">Aplicar</button><p class="cupom__msg" data-cupom-msg aria-live="polite"></p></form>
+            <dl class="contas">
+              <div><dt>Subtotal</dt><dd data-conta-sub>R$ 0,00</dd></div>
+              <div><dt>Frete</dt><dd data-conta-frete>Grátis</dd></div>
+              <div data-linha-desconto hidden><dt>Desconto</dt><dd data-conta-desc>− R$ 0,00</dd></div>
+              <div class="contas__total"><dt>Total</dt><dd data-conta-total>R$ 0,00</dd></div>
+            </dl>
+            <p class="resumo__parc" data-conta-parc>em até 10x sem juros</p>
+          </div>
+        </aside>
+      </div>
+
+      <section class="feito" data-feito hidden aria-labelledby="feito-titulo" tabindex="-1">
+        <p class="rotulo">Pedido <span data-feito-n></span></p>
+        <h2 class="feito__titulo" id="feito-titulo">Recebido.<br>Agora é com a gente.</h2>
+        <p class="feito__txt">Enviamos a confirmação para <strong data-feito-email></strong>. Você recebe o código de rastreio assim que a caixa sair do estoque.</p>
+        <a class="botao" href="index.html"><span class="botao__txt">Voltar à loja</span></a>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/src/checkout.js"></script>
+<div class="demo-aviso">PROTÓTIPO CONCEITUAL · imagens de referência e valores ilustrativos · sem vendas reais</div></body>
+</html>

@@ -1,0 +1,11 @@
+/* Próximo drop: foto escura de tela inteira, texto à esquerda. */
+.drop { position: relative; height: calc(100svh + var(--cobre)); color: var(--branco); background: #14171c; }
+.drop__palco { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; overflow: hidden; isolation: isolate; }
+.drop__foto { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; z-index: -2; will-change: transform; }
+.drop__palco::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(14 16 20 / 0.82) 0%, rgb(14 16 20 / 0.45) 42%, transparent 70%); }
+.drop__txt { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; padding: calc(120 * var(--su)) 0; }
+.relogio { display: flex; gap: calc(28 * var(--su)); }
+.relogio p { display: flex; flex-direction: column; gap: 4px; }
+.relogio span { font-family: var(--f-titulo); font-weight: 800; font-stretch: 80%; font-size: calc(48 * var(--su)); line-height: 1; font-variant-numeric: tabular-nums; }
+.relogio small { font-size: 12px; color: rgb(247 248 250 / 0.66); }
+.drop__nota { max-width: 44ch; font-size: 13px; color: rgb(247 248 250 / 0.7); }

@@ -1,0 +1,87 @@
+/* Celular (390 px de referência; o hero tem o bloco dele em hero.css): grade em duas colunas, cenas com composição
+   própria, os acessórios numa fileira nativa de arrastar, a crista das avaliações na largura da tela e o rodapé com o
+   nome e as pessoas na mesma escala. */
+@media (max-width: 899px) {
+  .secao { padding: calc(88 * var(--su)) 0; }
+  .titulo { font-size: calc(40 * var(--su)); }
+  .titulo--fecho { font-size: calc(46 * var(--su)); }
+  .secao__topo { margin-bottom: 28px; }
+  .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 10px; }
+  .grade__destaque { grid-column: 1 / -1; }
+  .grade__item:nth-child(n + 6) { display: none; }
+  .destaque { aspect-ratio: 4 / 3; height: auto; }
+  .destaque__nome { font-size: 34px; }
+  .card__nome { font-size: 13.5px; }
+  .card__preco { font-size: 13px; }
+  .numeros__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .numero { max-height: none; }
+  .numero__valor { font-size: 34px; }
+  .numero__valor small { font-size: 12px; }
+  .numero__leg { font-size: 12px; }
+  .montanha { height: 100svh; min-height: 600px; }
+  /* a foto (cume a 57,7% da largura e 20,6% da altura) a 260% da tela: o cume fica a ~55% da largura, a rocha enche
+     o pé e o nix fica atrás do cume */
+  .montanha__pico { width: 260%; max-width: none; left: -95%; right: auto; bottom: -2%; }
+  .montanha__marca { --w: 100vw; left: calc(50% - var(--w) * 0.5); top: 23%; }
+  .montanha__nota { top: 80px; left: var(--margem); right: var(--margem); max-width: 36ch; font-size: 13px; color: var(--tinta); text-align: left; }
+  .montanha__nota--dir { top: 122px; }
+  .montanha__titulo { font-size: 40px; bottom: 112px; text-shadow: 0 2px 24px rgb(18 20 24 / 0.35); }
+  .sobe__frase { font-size: 34px; top: calc(50% - 150px); }
+  .sobe__frase--b { top: calc(50% + 150px); }
+  .solta__frase { font-size: 40px; top: 84px; }
+  .solta__teste { display: none; }
+  .solta__peca { --w: 76vw; left: calc(50% - var(--w) * 0.5); top: calc(50% - var(--w) / 2); }
+  .pino__txt { max-width: 108px; padding: 5px 8px; font-size: 12px; line-height: 1.25; white-space: normal; }
+  .pino { width: max-content; }
+  .pino[data-lado='esq'] .pino__txt { max-width: 90px; }
+  .pino__fio { width: 18px; }
+  .solta__ficha { bottom: 96px; font-size: 12px; }
+  .solta__comprar { top: auto; bottom: 24px; right: auto; left: var(--margem); }
+  .acessorios__topo { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .acessorios__lado { align-items: flex-start; text-align: left; }
+  .acessorios { height: calc(100svh + var(--cobre)) !important; }
+  .acessorios__palco { justify-content: flex-start; padding-top: 84px; }
+  .acessorios__topo { margin-bottom: 24px; }
+  .trilho {
+    width: auto; margin-inline: 0; padding-inline: var(--margem); border-radius: 0; cursor: auto; touch-action: auto;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margem); scrollbar-width: none;
+  }
+  .trilho::-webkit-scrollbar { display: none; }
+  .trilho__fila { will-change: auto; }
+  .trilho__item { width: clamp(190px, (100svh - 380px) * 0.8, 72vw); scroll-snap-align: start; }
+  .lookbook { height: 200svh; }
+  .lookbook__palco { grid-template-columns: 1fr; grid-template-rows: auto 1fr; align-items: start; padding-top: 84px; gap: 22px; }
+  .lookbook__txt { order: -1; gap: 12px; }
+  .lookbook__corpo { font-size: 14px; }
+  .lookbook__colunas { height: auto; }
+  .cume { height: 260svh; }
+  .cume__lado { top: 76px; translate: none; width: auto; right: var(--margem); gap: 12px; }
+  .cume__nota strong { font-size: 32px; }
+  .cume__cartoes { min-height: 200px; }
+  .cartao__frase { font-size: 15px; }
+  .cume__montanha { width: calc(100vw - 2 * var(--margem)); right: var(--margem); }
+  .etq--cume { translate: calc(-100% - 12px) calc(-100% - 8px); }
+  .etq.is-on:not(.is-atual) { opacity: 0; scale: 0.85; }
+  .relogio span { font-size: 34px; }
+  .drop__palco::before { background: linear-gradient(0deg, rgb(14 16 20 / 0.86) 0%, rgb(14 16 20 / 0.55) 55%, rgb(14 16 20 / 0.2) 100%); }
+  .lista { height: 52px; }
+  .lista__campo { font-size: 16px; }
+  .lista__botao { padding-left: 14px; }
+  .rodape__topo { grid-template-columns: 1fr 1fr; padding-top: 72px; }
+  .rodape__news { grid-column: 1 / -1; }
+  .rodape__contato { grid-column: 1 / -1; align-items: flex-start; text-align: left; }
+  .rodape__nome { --u: calc((100vw - 2 * var(--margem)) / 1152); margin-top: 128px; }
+  .pessoa { scale: 1.4; transform-origin: 50% 100%; }
+  .rodape__pe { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* alvo de toque de 44 px sem mudar o desenho: a área clicável cresce por fora */
+@media (max-width: 899px) {
+  .pilula { height: 44px; } /* recorta o que passa da borda (overflow): cresce de verdade */
+  .fav::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; }
+}
+
+/* tela baixa (iPhone com as barras do Safari, ~553 a 660 de altura): o texto dos acessórios sai para a fileira caber */
+@media (max-width: 899px) and (max-height: 640px) {
+  .acessorios__lado p { display: none; }
+}

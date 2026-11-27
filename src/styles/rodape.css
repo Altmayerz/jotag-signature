@@ -1,0 +1,71 @@
+/* Rodapé: papel claro, colunas em cima, o nome gigante com as pessoas e a faixa de cordilheira. */
+.rodape { position: relative; background: var(--papel); color: var(--tinta); overflow: hidden; }
+.rodape__topo { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr) minmax(0, 0.8fr) minmax(0, 1fr); gap: 32px; padding-top: calc(120 * var(--su)); }
+.rodape__news { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.titulo--rodape { font-size: calc(48 * var(--su)); }
+.rodape__texto { max-width: 40ch; font-size: 14px; color: var(--apagado); }
+.rodape__col h3 { margin-bottom: 14px; font-family: var(--f-titulo); font-stretch: 125%; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.rodape__col li + li { margin-top: 8px; }
+.rodape__col a, .rodape__pe a { position: relative; font-size: 14px; color: rgb(18 20 24 / 0.72); transition: color 0.3s; }
+.rodape__col a::after, .rodape__pe a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--c-out); }
+@media (hover: hover) { :where(html:not(.rolando)) :is(.rodape__col, .rodape__pe) a:hover { color: var(--tinta); } :where(html:not(.rolando)) :is(.rodape__col, .rodape__pe) a:hover::after { transform: scaleX(1); transform-origin: left; } }
+.rodape__contato { display: flex; flex-direction: column; align-items: flex-end; gap: 16px; text-align: right; font-size: 13px; line-height: 1.55; color: var(--apagado); }
+.redes { display: flex; gap: 8px; }
+.rede { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--tinta); color: var(--branco); transition: background 0.3s, translate 0.3s var(--c-out); }
+.rede svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: hover) { :where(html:not(.rolando)) .rede:hover { background: var(--sinal); translate: 0 -2px; } }
+.rede:active { scale: 0.92; }
+.rodape__nome { position: relative; margin-top: calc(var(--u) * 230); height: calc(var(--u) * 404); }
+.rodape__palavra { position: absolute; left: 50%; bottom: 0; translate: -50% 0; display: flex; font-family: var(--f-titulo); font-weight: 900; font-stretch: 112%; font-size: calc(var(--u) * 548); line-height: 0.74; letter-spacing: -0.02em; color: var(--aco); white-space: nowrap; }
+.rodape__palavra span { display: block; }
+.pessoa { position: absolute; height: auto; filter: drop-shadow(0 14px 18px rgb(18 20 24 / 0.18)); opacity: 0; }
+.pessoa.is-on { opacity: 1; }
+/* as pessoas em cima das letras, medidas a partir do meio do nome (o nome é centrado e cresce em --u) */
+.pessoa--sentada { width: calc(var(--u) * 128); left: calc(50% - var(--u) * 545); bottom: calc(100% - var(--u) * 9); }
+.pessoa--pulo { width: calc(var(--u) * 168); left: calc(50% - var(--u) * 232); bottom: calc(100% + var(--u) * 22); }
+.pessoa--agachada { width: calc(var(--u) * 112); left: calc(50% - var(--u) * 36); bottom: calc(100% - var(--u) * 7); }
+.pessoa--deitada { width: calc(var(--u) * 200); left: calc(50% + var(--u) * 274); bottom: calc(100% - var(--u) * 10); }
+.rodape__serra { position: relative; height: calc(var(--u) * 170); margin-top: calc(var(--u) * -48); background: url('/img/serra-foto.webp') 50% 70% / cover no-repeat; -webkit-mask: linear-gradient(to bottom, transparent 0%, #000 45%, #000 80%, transparent 100%); mask: linear-gradient(to bottom, transparent 0%, #000 45%, #000 80%, transparent 100%); }
+.rodape__pe { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 18px 0 22px; font-size: 12.5px; color: var(--apagado); }
+.rodape__pe nav { display: flex; gap: 18px; }
+.rodape__pe a { font-size: 12.5px; }
+.signature-footer { background:#191714; color:#f2ede4; padding:clamp(28px,5vw,80px) clamp(22px,6vw,110px) 45px; }
+.signature-footer__feature {display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(24px,5vw,80px);padding-bottom:48px;border-bottom:1px solid #ffffff26;}
+.signature-footer__identity {text-align:center;display:grid;justify-items:center;gap:20px;}
+.signature-footer .signature-footer__logo {position:static;translate:none;display:block;line-height:1;white-space:normal;color:#f2ede4;}
+.signature-footer__symbol {width:clamp(100px,15vw,210px);height:auto;display:block;}
+.signature-footer__eyebrow,.signature-footer h3 {font:500 11px/1.5 system-ui;letter-spacing:.18em;text-transform:uppercase;color:#c4ad90;}
+.signature-footer h2 {font:400 clamp(28px,3.4vw,54px)/1.12 Georgia,serif;letter-spacing:-.035em;}
+.signature-footer a {color:#f2ede4;text-decoration:none;font-size:14px;}
+.signature-footer a:hover {text-decoration:underline;}
+.signature-footer__feature>img {width:100%;aspect-ratio:16/10;object-fit:cover;display:block;}
+.signature-footer__links {display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:28px;padding:36px 0;}
+.signature-footer__links> * {display:flex;flex-direction:column;align-items:flex-start;gap:12px;}
+.signature-footer__links p,.signature-footer__legal {font-size:12px;color:#c7bfb4;}
+.signature-footer__legal {border-top:1px solid #ffffff26;padding-top:22px;}
+.signature-footer .lista {width:100%;}
+@media(max-width:700px){.signature-footer__feature,.signature-footer__links{grid-template-columns:1fr}.signature-footer__feature{padding-bottom:30px}.signature-footer__links{gap:24px}}
+/* V19 — mirrored editorial footer, shared by home and product pages. */
+.signature-footer.signature-footer--editorial{background:radial-gradient(ellipse at 0 100%,#302318 0,transparent 35%),radial-gradient(ellipse at 100% 0,#2a2018 0,transparent 32%),#141210;padding:clamp(28px,5vw,76px) clamp(18px,5vw,90px) 52px;color:#f2ede4;}
+.signature-footer__columns{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.12fr) minmax(0,.8fr);max-width:1600px;margin:auto;gap:0;align-items:stretch;}
+.signature-footer__columns>section{min-width:0;display:flex;flex-direction:column;gap:16px;padding:0 clamp(18px,2.6vw,42px);}
+.signature-footer__columns>section:first-child{padding-left:0;}.signature-footer__columns>section:last-child{padding-right:0;}.signature-footer__columns>section+section{border-left:1px solid #c4ad9040;}
+.signature-footer--editorial .signature-footer__columns h3{font:400 clamp(24px,2.3vw,38px)/1.15 Georgia,serif;letter-spacing:-.025em;text-transform:none;color:#dfbd95;margin:0 0 5px;}
+.signature-footer--editorial address{font:normal 14px/1.65 system-ui;color:#e6ded3;}.signature-footer--editorial address strong{font-size:17px;color:#fff;}
+.signature-footer--editorial .signature-footer__map{width:100%;height:clamp(170px,15vw,245px);border:1px solid #c4ad9040;border-radius:12px;display:block;}
+.signature-footer--editorial a.signature-footer__route{display:flex;justify-content:center;align-items:center;text-align:center;width:100%;min-height:48px;padding:10px 12px;background:#d6b38d;color:#171310;border:1px solid #d6b38d;border-radius:9px;font-weight:600;}
+.signature-footer--editorial .signature-contacts{display:grid;gap:12px;width:100%;}
+.signature-footer--editorial .signature-contact{display:grid;grid-template-columns:clamp(52px,6vw,86px) minmax(0,1fr) auto;align-items:center;gap:10px;border:1px solid #c4ad9040;border-radius:12px;overflow:hidden;padding:7px;min-height:72px;text-decoration:none;}
+.signature-footer--editorial .signature-contact img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:8px;}
+.signature-footer--editorial .signature-contact strong,.signature-footer--editorial .signature-contact small{display:block;line-height:1.4;}.signature-footer--editorial .signature-contact small{font-size:11px;color:#d6b38d;margin-top:4px;}
+.signature-footer--editorial .signature-contact__action{border:1px solid #d6b38d;border-radius:999px;padding:8px;color:#dfbd95;font-size:11px;white-space:nowrap;}.signature-footer--editorial .signature-contact:hover{border-color:#d6b38d;background:#ffffff08;}
+.signature-footer__brandmark{display:grid;justify-items:center;gap:0;text-align:center;}.signature-footer__brandmark .signature-footer__symbol{width:100px;height:68px;object-fit:contain;filter:brightness(0) saturate(100%) invert(79%) sepia(25%) saturate(620%) hue-rotate(345deg);}.signature-footer__wordmark{font:400 32px/1.2 Georgia,serif;letter-spacing:.15em;}.signature-footer__brandmark .signature-hand{font:italic 32px/1.3 'Segoe Script','Brush Script MT','Apple Chancery',cursive;color:#dfbd95;}
+.signature-footer__brand p{font-size:14px;line-height:1.55;color:#e6ded3;}.signature-footer__brand nav{display:grid;gap:8px;}.signature-footer__brand h4{font:400 21px/1.2 Georgia,serif;color:#dfbd95;margin:0;}.signature-footer--editorial .signature-footer__legal{max-width:1600px;margin:32px auto 0;text-align:center;padding-top:20px;border-color:#c4ad9040;}
+@media(max-width:1100px){.signature-footer__columns>section{padding-inline:18px;}.signature-footer--editorial .signature-contact{grid-template-columns:54px minmax(0,1fr);}.signature-footer--editorial .signature-contact__action{grid-column:2;justify-self:start;padding:4px 10px;}.signature-footer--editorial .signature-contact img{grid-row:span 2;}}
+@media(max-width:760px){.signature-footer__columns{grid-template-columns:minmax(0,1fr);gap:26px;}.signature-footer__columns>section,.signature-footer__columns>section:first-child,.signature-footer__columns>section:last-child{padding:0;}.signature-footer__columns>section+section{border-left:0;border-top:1px solid #c4ad9040;padding-top:24px;}.signature-footer--editorial .signature-contact{grid-template-columns:56px minmax(0,1fr) auto;gap:10px;}.signature-footer--editorial .signature-contact img{grid-row:auto;}.signature-footer--editorial .signature-contact__action{grid-column:auto;padding:8px;}.signature-footer--editorial .signature-footer__map{height:210px;}.signature-footer__brandmark{justify-items:start;}.signature-footer--editorial .signature-footer__legal{margin-top:26px;padding-top:16px;}}
+@media(max-width:350px){.signature-footer--editorial .signature-contact{grid-template-columns:48px minmax(0,1fr);}.signature-footer--editorial .signature-contact__action{grid-column:2;}.signature-footer--editorial .signature-contact img{grid-row:span 2;}}
+
+/* V21 — circular WhatsApp icon, consistent on all breakpoints. */
+.signature-footer--editorial .signature-contact__action{display:grid;place-items:center;width:44px;height:44px;box-sizing:border-box;padding:0;flex-shrink:0;border-radius:50%;transition:background-color .2s,color .2s;}
+.signature-footer--editorial .signature-contact__action svg{display:block;width:23px;height:23px;fill:currentColor;stroke:none;}
+@media(hover:hover){.signature-footer--editorial .signature-contact:hover .signature-contact__action{background:#d6b38d;color:#141210;}}

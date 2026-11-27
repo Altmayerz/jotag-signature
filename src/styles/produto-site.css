@@ -1,0 +1,16 @@
+/* Folha das páginas de produto (ligada no <head> de produto/<slug>/index.html). */
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/geist/wght.css';
+@import './tokens.css';
+@import './base.css';
+@import './topo.css';
+@import './comum.css';
+@import './sacola.css';
+@import './rodape.css';
+@import './passagem.css';
+@import './produto.css';
+@import './celular.css';
+@import './signature-v5.css';
+.botao{padding-inline:22px;justify-content:center;}
+.botao__seta{display:none!important;}
+.signature-cta,.pilula{justify-content:center;}

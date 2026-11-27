@@ -1,0 +1,60 @@
+/* Static photography: no cursor offset, no overscan, no animated scale. */
+.hero__cena,.hero__cena .capa {transform:none!important;will-change:auto;}
+.hero__modelos {inset:0!important;width:100%;height:100%;transform:none!important;}
+.hero__modelo {object-fit:cover;transform:none!important;}
+.hero__modelo[data-modelo] {object-position:50% 50%;}
+@media(max-width:899px){
+.hero__modelo[data-modelo="breu"]{object-position:72% 50%;}
+.hero__modelo[data-modelo="gelo"]{object-position:76% 50%;}
+.hero__modelo[data-modelo="cromo"]{object-position:43% 50%;}
+.hero__modelo[data-modelo="sinal"]{object-position:72% 50%;}
+}
+.hero__cores .ficha:hover .ficha__img{scale:1;}
+/* Editorial composition, centered on the image edges. */
+.sobe {height:210svh;}
+.sobe__palco {--editorial-half:20vh;isolation:isolate;}
+.sobe__janela {inset:auto;left:50%;top:50%;translate:-50% -50%;width:min(76vw,103vh);height:auto;aspect-ratio:16/9;border-radius:8px;}
+.sobe__img {object-position:50% 50%;}
+.sobe__frase--a,.sobe__frase--b {left:0;right:0;justify-content:center;transform:translateY(-50%);margin:0;z-index:2;}
+.sobe__frase--a {top:calc(50% - var(--editorial-half) - 12px);font-size:clamp(52px,7vw,116px);}
+.sobe__frase--b {top:calc(50% + var(--editorial-half) + 12px);font-size:clamp(34px,6vw,96px);letter-spacing:.035em;}
+.sobe__frase .l {text-shadow:0 1px 5px #f1ece3;}
+@media(max-width:899px){.sobe__frase--a{font-size:clamp(44px,12vw,76px)}.sobe__frase--b{font-size:clamp(28px,9vw,54px)}}
+html.reduzido .sobe{height:auto;padding:48px 0;}
+html.reduzido .sobe__palco{height:65svh;position:relative;}
+/* Sticky selection ends before the next section begins. */
+.acessorios {position:relative;margin:0!important;}
+.acessorios .trilho {scrollbar-width:none;}
+.acessorios .trilho::-webkit-scrollbar {display:none;}
+.acessorios.selection-scroll {height:calc(var(--track-height,100svh) + var(--track-distance,0px))!important;padding:0;}
+.selection-scroll .acessorios__palco {position:sticky;top:0;height:var(--track-height,100svh);padding:24px 0 36px;justify-content:center;}
+.selection-scroll .trilho {overflow:clip;scroll-snap-type:none;cursor:auto;}
+.selection-scroll .trilho__fila {transform:var(--unused,none);will-change:transform;}
+.selection-scroll .trilho__item {width:clamp(180px,min(19vw,calc((100svh - 245px)*.8)),280px);}
+.selection-scroll .acessorios__topo {margin-bottom:clamp(18px,4vh,48px);}
+.lookbook {margin-top:0!important;}
+/* Three-image editorial: original photographs, no text overlays. */
+.sobe__palco{--editorial-gap:clamp(12px,2vw,32px);}
+.sobe__janela{width:min(50vw,110vh);aspect-ratio:16/9;z-index:2;}
+.sobe__lateral{position:absolute;top:50%;translate:0 -50%;width:min(20vw,48vh);aspect-ratio:4/5;object-fit:cover;border-radius:8px;z-index:1;}
+.sobe__lateral--a{left:2.5%;}.sobe__lateral--b{right:2.5%;}
+@media(max-width:899px){
+.sobe,html.reduzido .sobe{height:auto;padding:48px 5vw;}
+.sobe__palco,html.reduzido .sobe__palco{position:relative;height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;overflow:visible;}
+.sobe__janela{position:relative;inset:auto;translate:none;width:100%;height:auto;grid-column:1/-1;grid-row:1;aspect-ratio:16/9;}
+.sobe__lateral{position:relative;inset:auto;translate:none;width:100%;height:auto;grid-row:2;}
+}
+
+/* V12: mobile-only scroll choreography. Desktop remains unchanged. */
+@media (max-width:899px) and (prefers-reduced-motion:no-preference){
+  .sobe{height:185svh;padding:0;}
+  .sobe__palco{position:sticky;top:0;height:100svh;display:block;overflow:hidden;}
+  .sobe__janela{position:absolute;left:50%;top:0;translate:-50% 0;width:90%;height:auto;}
+  .sobe__lateral{position:absolute;top:0;translate:none;width:calc((90% - 12px)/2);height:auto;}
+  .sobe__lateral--a{left:5%;}
+  .sobe__lateral--b{right:5%;}
+  .sobe__img{object-fit:cover;object-position:40% 50%;}
+  .acessorios.selection-scroll .trilho{overflow:clip;touch-action:pan-y;scroll-snap-type:none;}
+  .selection-scroll .trilho__item{width:clamp(145px,min(57vw,calc((100svh - 245px)*.8)),280px);}
+  .selection-scroll .acessorios__palco{padding:24px 0 36px;justify-content:center;}
+}

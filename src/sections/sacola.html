@@ -1,0 +1,35 @@
+<!-- Sacola: gaveta à direita com o frete grátis, os itens, "combina com" e o fecho da compra. O estado mora no
+     localStorage (o checkout lê o mesmo). Abre e fecha por motion/sacola.js. -->
+<div class="sacola" data-sacola hidden>
+  <div class="sacola__veu" data-fecha-sacola></div>
+  <aside class="sacola__painel" role="dialog" aria-modal="true" aria-labelledby="sacola-titulo" tabindex="-1" data-painel>
+    <header class="sacola__topo">
+      <h2 class="sacola__titulo" id="sacola-titulo">Sua sacola <span class="sacola__n" data-sacola-n>(0)</span></h2>
+      <button class="sacola__fechar" type="button" aria-label="Fechar a sacola" data-fecha-sacola>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5.5 5.5 9 9m0-9-9 9"/></svg>
+      </button>
+    </header>
+    <div class="sacola__frete" data-frete>
+      <p class="sacola__frete-txt" data-frete-txt>Faltam R$ 500 para o frete grátis</p>
+      <div class="sacola__barra"><span data-frete-barra></span></div>
+    </div>
+    <div class="sacola__corpo" data-corpo>
+      <ul class="sacola__itens" data-itens></ul>
+      <p class="sacola__vazia" data-vazia>A sacola está vazia. Escolha uma cor e um tamanho lá em cima.</p>
+      <section class="sacola__combina" data-combina aria-labelledby="combina-titulo">
+        <h3 class="sacola__rotulo" id="combina-titulo">Combina com</h3>
+        <ul class="sacola__sugestoes" data-sugestoes></ul>
+      </section>
+    </div>
+    <footer class="sacola__pe">
+      <div class="sacola__sub"><span>Subtotal</span><strong data-subtotal>R$ 0,00</strong></div>
+      <p class="sacola__parc" data-parcelas>ou 10x sem juros</p>
+      <p class="sacola__prazo">Entrega expressa em 2 a 4 dias úteis</p>
+      <a class="botao botao--escuro sacola__finalizar" href="checkout.html" data-finalizar>
+        <span class="botao__txt">Finalizar compra</span>
+        
+      </a>
+      <p class="sacola__meios">Pix · cartão em até 10x · boleto · troca grátis em 30 dias</p>
+    </footer>
+  </aside>
+</div>

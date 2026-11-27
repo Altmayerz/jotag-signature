@@ -1,0 +1,11 @@
+/* "Quem sobe / sabe": palco preso de uma tela sobre o papel. As duas frases ficam no meio da altura, uma de cada lado
+   da janela da foto; a janela cresce do centro até cobrir a tela de borda a borda (motion/sobe.js). A seção seguinte
+   sobe por cima da foto cheia. */
+.sobe { position: relative; height: calc(220svh + var(--cobre)); background: var(--papel); color: var(--tinta); }
+.sobe__palco { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.sobe__frase { position: absolute; top: 50%; transform: translateY(-50%); display: flex; font-family: var(--f-titulo); font-weight: 800; font-stretch: 78%; font-size: min(calc(72 * var(--su)), 8vw); line-height: 0.9; letter-spacing: 0.02em; }
+.sobe__frase--a { left: var(--margem); }
+.sobe__frase--b { right: var(--margem); }
+.sobe__frase .l { display: inline-block; will-change: transform, opacity; }
+.sobe__janela { position: absolute; inset: 0; transform-origin: 50% 50%; border-radius: 28px; overflow: hidden; will-change: transform; background: var(--ardosia); }
+.sobe__img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }

@@ -1,0 +1,22 @@
+<!-- Avaliações ("quem já subiu"): cena presa no escuro. A rolagem faz um ponto de luz subir a crista da montanha
+     desenhando a linha; em cada altitude uma bandeira finca e o cartão ao lado troca para o depoimento dela; a nota
+     conta até 4,9. A linha é presa à rolagem; bandeiras, cartões e nota entram por marco (motion/cume.js). -->
+<section class="cume cobre" id="avaliacoes" aria-labelledby="cume-titulo" data-cena>
+  <div class="cume__palco">
+    <div class="cume__montanha">
+      <img class="cume__foto" src="img/cume.webp" alt="Montanha nevada ao anoitecer, com a crista subindo até o cume" width="1800" height="1200" loading="lazy" decoding="async">
+      <svg class="cume__trilha" data-trilha aria-hidden="true"></svg>
+    </div>
+    <div class="cume__lado">
+      <p class="rotulo">Avaliações</p>
+      <h2 class="titulo" id="cume-titulo" data-revela>Quem já<br>subiu</h2>
+      <p class="cume__nota"><strong data-nota>0,0</strong><span class="cume__flocos" aria-hidden="true">✱✱✱✱✱</span><span>de 1.240 avaliações</span></p>
+      <div class="cume__cartoes" data-cartoes aria-live="polite">
+        <article class="cartao is-ativo" data-base>
+          <p class="cartao__alt">Base · 0 m</p>
+          <p class="cartao__frase">Cada bandeira é uma avaliação. Role para subir a montanha e ler o que cada pessoa escreveu naquela altitude.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

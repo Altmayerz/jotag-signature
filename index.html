@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>JotaG Signature · Moda masculina · Signature One</title>
+  <meta name="description" content="Conheça o universo JotaG Signature e a coleção Signature One.">
+  <meta name="theme-color" content="#dcdfe3">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- primeira pintura: o fundo já na cor do hero e a abertura (logo e altitude) no lugar. A folha do site vem em
+       <link> (segura a pintura até chegar), nunca pelo JS. O que entra por marco só se esconde com o JS no ar
+       (classe .js); se ele não subir em 4 s, a trava cai e a página aparece inteira. -->
+  <script>
+    (function () {
+      var d = document.documentElement, q = new URLSearchParams(location.search);
+      d.classList.add('js');
+      var tema = q.get('tema');
+      if (tema && /^(grafite|noite)$/.test(tema)) d.dataset.tema = tema;
+      if (q.has('pronto')) d.classList.add('pronto');
+      // voltando de outra página pela passagem: sem a abertura, a tela da passagem sobe
+      try { if (sessionStorage.getItem('nix-passagem')) { d.classList.add('chegando', 'pronto'); sessionStorage.removeItem('nix-passagem'); } } catch (e) {}
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduzido');
+      if (matchMedia('(hover: none)').matches) d.classList.add('toque');
+      // abrindo: a abertura está na tela e o hero espera escondido (motion/abertura.js tira a classe no fim)
+      d.classList.add('pronto');
+      setTimeout(function () { if (!window.__nixViva) d.classList.remove('js', 'abrindo'); }, 4000);
+    })();
+  </script>
+  <style>
+    html { background: #191714; color: #121418; }
+    html.chegando { background: #3b4454; }
+    body { margin: 0; }
+    html:not(.assentou) *, html:not(.assentou) *::before, html:not(.assentou) *::after { transition: none !important; }
+  </style>
+  <link rel="preload" href="/node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/src/styles/site.css">
+</head>
+<body>
+  <a class="pular" href="#colecao">Pular para o conteúdo</a>
+
+  
+
+  <!-- @secao topo -->
+
+  <main id="conteudo">
+    <!-- @secao hero -->
+
+    <!-- @secao colecao -->
+
+    
+
+    <!-- @secao montanha -->
+
+    <!-- @secao sobe -->
+
+    
+
+    <!-- @secao acessorios -->
+
+    <!-- @secao lookbook -->
+
+    
+
+    
+  </main>
+
+  <!-- @secao rodape -->
+
+  <!-- @secao sacola -->
+
+  <div class="passagem" data-passagem aria-hidden="true">
+    <!-- @svg logo passagem__logo -->
+    <p class="passagem__txt">Checkout</p>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+<div class="demo-aviso">PROTÓTIPO CONCEITUAL · imagens de referência e valores ilustrativos · sem vendas reais</div></body>
+</html>

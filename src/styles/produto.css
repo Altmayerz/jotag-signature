@@ -1,0 +1,103 @@
+/* Página de produto: ficha presa à esquerda, fotos empilhadas no meio, compra presa à direita (a página de peça de uma
+   loja de moda, na identidade da Nix). Embaixo, "Combina com" e o rodapé. */
+.pag-produto { background: var(--papel); }
+.produto { padding: calc(110 * var(--su)) 0 0; }
+.produto__grade { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr) minmax(0, 0.85fr); gap: calc(40 * var(--su)); align-items: start; }
+.produto__ficha, .produto__compra { position: sticky; top: 96px; display: flex; flex-direction: column; }
+.migalha { display: flex; gap: 8px; font-size: 12.5px; color: var(--apagado); }
+.migalha a { transition: color 0.25s; }
+@media (hover: hover) { .migalha a:hover { color: var(--tinta); } }
+.produto__rotulo { margin-top: 26px; }
+.produto__nome { margin-top: 10px; font-family: var(--f-titulo); font-weight: 800; font-stretch: 78%; font-size: calc(64 * var(--su)); line-height: 0.88; letter-spacing: -0.01em; text-transform: uppercase; }
+.produto__tipo { margin-top: 10px; font-size: 15px; color: var(--apagado); }
+.produto__desc { margin-top: 22px; font-size: 15px; line-height: 1.6; color: rgb(18 20 24 / 0.78); }
+.produto__ficha-lista { margin: 24px 0 0; border-top: 1px solid var(--linha); }
+.produto__ficha-lista div { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--linha); font-size: 13.5px; }
+.produto__ficha-lista dt { color: var(--apagado); }
+.produto__ficha-lista dd { margin: 0; }
+
+.produto__fotos { display: flex; flex-direction: column; gap: 12px; }
+.foto { position: relative; margin: 0; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: #d9dde3; }
+.foto img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.35s var(--c-out), scale 1s var(--c-out); }
+.foto--recorte { background: var(--fundo-foto); transition: background 0.5s var(--c-io); }
+.foto--recorte img { object-fit: contain; object-position: 50% 100%; }
+.foto figcaption { position: absolute; left: 14px; bottom: 12px; display: flex; gap: 8px; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: rgb(247 248 250 / 0.85); font-size: 12px; font-weight: 500; }
+.foto figcaption span { color: var(--apagado); font-variant-numeric: tabular-nums; }
+.foto.is-trocando img { opacity: 0; }
+@media (hover: hover) { :where(html:not(.rolando)) .foto:hover img { scale: 1.03; } }
+
+.produto__preco { font-family: var(--f-titulo); font-weight: 800; font-stretch: 85%; font-size: 30px; line-height: 1; font-variant-numeric: tabular-nums; }
+.produto__parc { margin-top: 6px; font-size: 13px; color: var(--apagado); }
+.produto__grupo { margin-top: 22px; }
+.produto__rot { font-size: 13px; color: var(--apagado); margin-bottom: 10px; }
+.produto__rot span { color: var(--tinta); font-weight: 500; margin-left: 6px; }
+.produto__rot.is-dica { color: var(--sinal); font-weight: 600; }
+.cores { display: flex; flex-wrap: wrap; gap: 8px; }
+.cor { position: relative; width: 34px; height: 34px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgb(18 20 24 / 0.16); transition: scale 0.25s var(--c-out); }
+.cor::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1.5px solid var(--tinta); opacity: 0; scale: 0.8; transition: opacity 0.3s var(--c-out), scale 0.35s var(--c-out); }
+.cor.is-ativa::after { opacity: 1; scale: 1; }
+@media (hover: hover) { .cor:hover { scale: 1.08; } .cor:not(.is-ativa):hover::after { opacity: 0.3; scale: 1; } }
+.cor:active { scale: 0.92; }
+.opcoes-tam { display: flex; flex-wrap: wrap; gap: 6px; }
+.op { min-width: 48px; height: 44px; padding: 0 14px; border-radius: 12px; background: var(--branco); font-size: 14px; font-weight: 500; box-shadow: inset 0 0 0 1px rgb(18 20 24 / 0.1); transition: background 0.25s, color 0.25s, box-shadow 0.25s, scale 0.2s var(--c-out); }
+@media (hover: hover) { .op:hover { box-shadow: inset 0 0 0 1px rgb(18 20 24 / 0.4); } }
+.op:active { scale: 0.95; }
+.op[aria-checked='true'] { background: var(--tinta); color: var(--branco); box-shadow: none; }
+.produto__add { width: 100%; justify-content: space-between; height: 58px; margin-top: 22px; font-size: 15.5px; }
+.produto__add .botao__preco { margin-left: auto; }
+.produto__estoque { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--apagado); }
+.produto__luz { width: 8px; height: 8px; border-radius: 50%; background: #2f9e8f; box-shadow: 0 0 0 4px rgb(47 158 143 / 0.18); }
+.produto__garantias { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--linha); font-size: 13px; color: rgb(18 20 24 / 0.75); }
+.produto__garantias li { position: relative; padding: 4px 0 4px 18px; }
+.produto__garantias li::before { content: ''; position: absolute; left: 2px; top: 11px; width: 8px; height: 5px; border-left: 1.5px solid var(--tinta); border-bottom: 1.5px solid var(--tinta); rotate: -45deg; }
+.produto__indice { margin-top: 22px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.produto__indice a { display: flex; gap: 10px; padding: 6px 0; font-size: 13px; color: var(--apagado); transition: color 0.3s; }
+.produto__indice a span { font-variant-numeric: tabular-nums; }
+.produto__indice a.is-ativo { color: var(--tinta); font-weight: 500; }
+@media (hover: hover) { .produto__indice a:hover { color: var(--tinta); } }
+
+.relacionados { margin-top: calc(80 * var(--su)); }
+.relacionados .titulo { margin-bottom: calc(40 * var(--su)); }
+.relacionados__lista { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(28 * var(--su)) calc(16 * var(--su)); }
+.pag-produto .rodape.cobre { margin-top: 0; }
+/* "Combina com" fica no papel: o cartão de acessório guarda a foto escura, mas o texto volta à tinta */
+.relacionados .card--escuro .card__info { color: var(--tinta); }
+.relacionados .card--escuro .card__tipo, .relacionados .card--escuro .card__cores { color: var(--apagado); }
+.relacionados .card--escuro .ponto { box-shadow: inset 0 0 0 1px rgb(18 20 24 / 0.18); }
+
+/* entrada da página */
+html.js [data-entra-pdp] { opacity: 0; translate: 0 20px; }
+html.js.pdp-pronta [data-entra-pdp] { opacity: 1; translate: 0 0; transition: opacity 0.8s var(--c-out), translate 0.9s var(--c-out); }
+html.js .produto__fotos .foto { opacity: 0; translate: 0 40px; }
+html.js.pdp-pronta .produto__fotos .foto { opacity: 1; translate: 0 0; transition: opacity 0.9s var(--c-out), translate 1s var(--c-out); }
+html.js.pdp-pronta .produto__fotos .foto:nth-child(2) { transition-delay: 0.08s; }
+html.js.pdp-pronta .produto__fotos .foto:nth-child(3) { transition-delay: 0.16s; }
+html.reduzido [data-entra-pdp], html.reduzido .produto__fotos .foto { opacity: 1 !important; translate: none !important; }
+
+@media (max-width: 899px) {
+  .produto { padding-top: 76px; }
+  /* a compra logo depois do nome: as duas colunas se desfazem (display: contents) e os blocos entram na ordem de
+     quem compra pelo celular, a descrição e a ficha depois do botão */
+  .produto__grade { display: flex; flex-direction: column; gap: 0; }
+  .produto__ficha, .produto__compra { display: contents; }
+  .produto__fotos { order: 0; margin-bottom: 22px; }
+  .migalha { order: 1; }
+  .produto__rotulo { order: 2; margin-top: 20px; }
+  .produto__nome { order: 3; }
+  .produto__tipo { order: 4; }
+  .produto__preco { order: 5; margin-top: 20px; }
+  .produto__parc { order: 6; }
+  .produto__grupo { order: 7; }
+  .produto__add { order: 8; }
+  .produto__estoque { order: 9; }
+  .produto__desc { order: 10; margin-top: 30px; }
+  .produto__ficha-lista { order: 11; }
+  .produto__garantias { order: 12; }
+  .produto__fotos { order: -1; flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-inline: calc(-1 * var(--margem)); padding-inline: var(--margem); scrollbar-width: none; }
+  .foto { flex: 0 0 84%; scroll-snap-align: center; }
+  .produto__nome { font-size: 40px; }
+  .produto__indice { display: none; }
+  .migalha a { padding: 12px 0; margin: -12px 0; }
+  .relacionados__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.produto__nome {font-size:clamp(24px,3vw,54px);line-height:1.02;overflow-wrap:anywhere;hyphens:auto;max-width:100%;}

@@ -1,0 +1,67 @@
+<!-- Hero: a jaqueta Tricot em quatro cores. Camadas de trás para a frente: o fundo da cor ativa, o círculo da cor nova
+     (cresce da ficha na troca), a luz, a cordilheira na névoa, o logo de neve, a neve do fundo, a névoa do chão, a
+     modelo de cada cor, a névoa da frente e os flocos grandes e desfocados; por cima, a rajada de neve da troca e o
+     grão. A interface fica acima de tudo (motion/hero.js, motion/profundidade.js). -->
+<section class="hero" id="hero" data-hero aria-label="Tricot, moda masculina">
+  <div class="hero__fixo" data-hero-fixo>
+  <div class="hero__palco" data-palco>
+    <div class="hero__fundo"></div>
+    <div class="hero__tinta" data-tinta></div>
+    <!-- a cena em camadas, de trás para a frente; cada .capa anda com o mouse na proporção de data-prof (px) -->
+    <div class="hero__cena" data-cena aria-hidden="true">
+      <div class="capa"><div class="hero__luz"></div><div class="hero__serra"></div></div>
+      <div class="capa"><div class="hero__marca"><img src="img/marca-neve.webp" alt="" width="2052" height="1053" decoding="async"></div></div>
+      <div class="capa capa--larga"></div>
+      <div class="capa capa--modelo">
+        <div class="hero__nevoa hero__nevoa--atras"></div>
+        <div class="hero__modelos">
+          <img class="hero__modelo is-ativa" data-modelo="breu" src="img/campaign-breu.webp" alt="" width="1672" height="941" fetchpriority="high">
+          <img class="hero__modelo" data-modelo="gelo" src="img/campaign-gelo.webp" alt="" width="1672" height="941">
+          <img class="hero__modelo" data-modelo="cromo" src="img/campaign-cromo.webp" alt="" width="1672" height="941">
+          <img class="hero__modelo" data-modelo="sinal" src="img/campaign-sinal.webp" alt="" width="1672" height="941">
+        </div>
+      </div>
+      <div class="capa capa--larga"><div class="hero__nevoa hero__nevoa--frente"></div></div>
+    </div>
+    <!-- celular: a modelo some num degradê da cor do fundo, que segura os tamanhos e o "Adicionar"; na troca, a camada
+         da cor nova é recortada pelo mesmo círculo do fundo -->
+    <div class="hero__pe" aria-hidden="true"><div class="hero__pe-novo" data-pe-novo></div></div>
+    <div class="signature-film-burn" data-film-burn aria-hidden="true"></div>
+    <div class="hero__grao" aria-hidden="true"></div>
+  </div>
+
+  <div class="hero__info">
+    <p class="hero__olho" data-tinge data-entra><span>JotaG Signature</span><span>Collection 01</span></p>
+    <p class="signature-kicker" data-entra>O estilo é a sua assinatura.</p><h1 class="hero__titulo" data-tinge><span class="hero__nome" data-nome>Elegance</span></h1>
+    <p class="signature-copy" data-entra>Toda grande história começa com uma boa assinatura.</p><a class="signature-cta" href="#colecao" data-entra>Explorar coleção </a><div class="hero__tamanhos" role="radiogroup" aria-label="Tamanho" data-tinge data-entra data-tamanhos>
+      <span class="hero__rotulo" data-dica>Tamanho</span>
+      <button class="tam" type="button" role="radio" aria-checked="false" data-tam="PP">PP</button>
+      <button class="tam" type="button" role="radio" aria-checked="false" data-tam="P">P</button>
+      <button class="tam" type="button" role="radio" aria-checked="false" data-tam="M">M</button>
+      <button class="tam" type="button" role="radio" aria-checked="false" data-tam="G">G</button>
+      <button class="tam" type="button" role="radio" aria-checked="false" data-tam="GG">GG</button>
+    </div>
+    <button class="botao hero__add" type="button" data-entra data-adicionar>
+      <span class="botao__txt">Adicionar</span>
+      <span class="botao__preco" data-preco><span>R$ 1.890</span></span>
+      
+    </button>
+    <p class="hero__nota" data-tinge data-entra>
+      <span class="hero__amostras" aria-hidden="true"><img src="img/mini-gelo.webp" alt=""><img src="img/mini-cromo.webp" alt=""><img src="img/mini-sinal.webp" alt=""></span>
+      <strong>4,9</strong>
+      <svg class="hero__floco" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v16M3.1 6l13.8 8M3.1 14 16.9 6M7.6 3.4 10 5.2l2.4-1.8M7.6 16.6 10 14.8l2.4 1.8"/></svg>
+      <span>Coleção demonstrativa</span>
+    </p>
+    <a class="hero__detalhes" href="produto/serac/#breu" data-tinge data-entra data-troca data-label="Tricot" data-detalhes>Ver detalhes da peça </a>
+  </div>
+
+  <ul class="hero__cores" role="radiogroup" aria-label="Looks da coleção" data-cores>
+    <li><button class="ficha is-ativa" type="button" role="radio" aria-checked="true" data-cor="breu" data-tinge><img class="ficha__img" src="img/campaign-mini-breu.webp" alt="" width="352" height="198"><span class="ficha__txt"><span class="ficha__nome">Elegance</span><span class="ficha__preco">Look 01</span></span></button></li>
+    <li><button class="ficha" type="button" role="radio" aria-checked="false" data-cor="gelo" data-tinge><img class="ficha__img" src="img/campaign-mini-gelo.webp" alt="" width="352" height="198"><span class="ficha__txt"><span class="ficha__nome">Timeless</span><span class="ficha__preco">Look 02</span></span></button></li>
+    <li><button class="ficha" type="button" role="radio" aria-checked="false" data-cor="cromo" data-tinge><img class="ficha__img" src="img/campaign-mini-cromo.webp" alt="" width="352" height="198"><span class="ficha__txt"><span class="ficha__nome">Heritage</span><span class="ficha__preco">Look 03</span></span></button></li>
+    <li><button class="ficha" type="button" role="radio" aria-checked="false" data-cor="sinal" data-tinge><img class="ficha__img" src="img/campaign-mini-sinal.webp" alt="" width="352" height="198"><span class="ficha__txt"><span class="ficha__nome">Classic</span><span class="ficha__preco">Look 04</span></span></button></li>
+  </ul>
+
+  <p class="hero__linha" data-tinge data-entra data-linha>Signature One · moda masculina<br>Apresentação conceitual</p>
+  </div>
+</section>

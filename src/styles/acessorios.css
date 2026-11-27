@@ -1,0 +1,12 @@
+/* Acessórios: fundo grafite com corte seco; trilho que anda com a rolagem e com o arraste. */
+.acessorios { background: var(--grafite); color: var(--branco); height: calc(200svh + var(--cobre)); }
+.acessorios__palco { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 56px; }
+.acessorios__topo { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: calc(48 * var(--su)); }
+.acessorios__lado { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; max-width: 360px; text-align: right; font-size: 15px; line-height: 1.5; color: rgb(247 248 250 / 0.82); }
+.trilho { position: relative; width: min(1280px, 100% - 2 * var(--margem)); margin-inline: auto; overflow: hidden; border-radius: 14px; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.trilho.is-arrasto { cursor: grabbing; }
+.trilho__fila { display: flex; gap: calc(16 * var(--su)); width: max-content; will-change: transform; }
+.trilho__item { width: clamp(220px, 19vw, 280px); flex: none; }
+.cursor-arraste { position: fixed; left: 0; top: 0; z-index: 60; display: grid; place-items: center; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--branco); color: var(--tinta); font-size: 12px; font-weight: 600; pointer-events: none; scale: 0; transition: scale 0.35s var(--c-out); }
+.cursor-arraste.is-on { scale: 1; }
+.cursor-arraste.is-segura { scale: 0.82; }

@@ -1,0 +1,125 @@
+/* Hero: cena de tela cheia em --u. As cores da cor ativa entram por variáveis no .hero (motion/hero.js):
+   --hero-fundo, --hero-tinta, --vidro, --vidro-ativo, --marca. */
+@property --luz { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --serra { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --nevoa { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --nevoa-frente { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --marca-a { syntax: '<number>'; inherits: true; initial-value: 1; }
+.hero {
+  --luz: rgb(255 255 255 / 0.6); --serra: rgb(116 128 146 / 0.42); --nevoa: rgb(245 247 249 / 0.9); --nevoa-frente: rgb(245 247 249 / 0.5); --marca-a: 0.96;
+  transition: --luz 0.45s var(--c-io), --serra 0.45s var(--c-io), --nevoa 0.45s var(--c-io), --nevoa-frente 0.45s var(--c-io), --marca-a 0.45s var(--c-io);
+  --hero-fundo: #dcdfe3; --hero-tinta: var(--tinta); --vidro: rgb(18 20 24 / 0.06); --vidro-ativo: rgb(255 255 255 / 0.62); --marca: rgb(255 255 255 / 0.92);
+  position: relative; height: calc(100svh + var(--cobre)); color: var(--hero-tinta); isolation: isolate;
+}
+.hero__fixo { position: sticky; top: 0; height: 100svh; min-height: 620px; overflow: hidden; }
+.hero__palco { position: absolute; inset: 0; }
+.hero__fundo, .hero__tinta { position: absolute; inset: 0; background: var(--hero-fundo); }
+.hero__tinta { clip-path: circle(0 at 80% 30%); }
+
+/* a cena em camadas: cada .capa anda com o mouse (motion/profundidade.js); as que têm canvas são maiores que a tela
+   para a borda nunca aparecer */
+.hero__cena { position: absolute; inset: 0; transform-origin: 50% 62%; will-change: transform; }
+.capa { position: absolute; inset: 0; }
+.hero.is-mexendo .capa { will-change: transform; }
+.capa--larga { inset: -72px; }
+.hero__luz { position: absolute; inset: 0; background: radial-gradient(ellipse 44% 62% at 50% 60%, var(--luz) 0%, transparent 72%); }
+.hero__serra {
+  position: absolute; left: -5%; right: -5%; bottom: 8%; height: 58%; background: var(--serra);
+  -webkit-mask: url('/img/serra.webp') 50% 100% / 100% auto no-repeat; mask: url('/img/serra.webp') 50% 100% / 100% auto no-repeat;
+}
+.hero__marca { position: absolute; left: 50%; top: 51%; width: calc(var(--u) * 1240); opacity: var(--marca-a); transform: translate(-47%, -50%) rotate(-3deg); }
+.hero__marca img { width: 100%; height: auto; }
+.hero__neve { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero__nevoa { position: absolute; left: -6%; right: -6%; bottom: -2%; }
+.capa--larga .hero__nevoa { left: 0; right: 0; bottom: 70px; }
+.hero__nevoa--atras { height: 46%; background: radial-gradient(ellipse 60% 70% at 50% 100%, var(--nevoa) 0%, transparent 70%), linear-gradient(to top, var(--nevoa) 0%, transparent 62%); }
+.hero__nevoa--frente { height: 24%; background: linear-gradient(to top, var(--nevoa-frente) 0%, transparent 100%); }
+.hero__modelos { position: absolute; left: 50%; bottom: -16px; height: calc(100% - var(--u) * 112 + 16px); aspect-ratio: 1024 / 1536; transform: translateX(-50%); }
+.hero__modelo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; opacity: 0; }
+.hero__modelo.is-ativa { opacity: 1; }
+.hero__rajada { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero__grao { position: absolute; inset: 0; background: url('/img/grao.png') 0 0 / 200px; opacity: 0.11; mix-blend-mode: overlay; pointer-events: none; }
+
+.hero__info, .hero__cores, .hero__linha { position: absolute; z-index: 3; }
+[data-tinge] { color: var(--t, var(--hero-tinta)); transition: color 0.35s var(--c-out); }
+.hero__info { left: var(--margem); top: calc(var(--u) * 150 + 24px); width: min(34vw, 470px); }
+.hero__olho { display: flex; flex-wrap: wrap; gap: 6px 22px; font-family: var(--f-titulo); font-stretch: 125%; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.78; }
+.hero__titulo { margin-top: calc(var(--u) * 18); font-family: var(--f-titulo); font-weight: 800; font-stretch: 76%; font-size: clamp(64px, calc(var(--u) * 124), 140px); line-height: 0.86; letter-spacing: -0.012em; text-transform: uppercase; }
+.hero__nome { display: inline-flex; overflow: hidden; padding: 0.12em 0.04em 0.06em; margin: -0.12em -0.04em -0.06em; }
+.hero__nome .l { display: inline-block; transform-origin: 50% 100%; }
+.hero__tamanhos { margin-top: calc(var(--u) * 28); display: flex; align-items: center; gap: 4px; }
+.hero__rotulo { min-width: 66px; margin-right: 6px; font-size: 12.5px; opacity: 0.72; transition: color 0.3s var(--c-out), opacity 0.3s; }
+.hero__rotulo.is-dica { color: var(--sinal); opacity: 1; }
+.tam { position: relative; width: 38px; height: 38px; border-radius: 50%; font-size: 13px; font-weight: 500; transition: scale 0.25s var(--c-out); }
+.tam::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 1px solid currentColor; opacity: 0; transform: scale(0.7); transition: opacity 0.3s var(--c-out), transform 0.4s var(--c-out), background 0.3s; }
+@media (hover: hover) { .tam:hover::before { opacity: 0.35; transform: scale(1); } }
+.tam:active { scale: 0.9; }
+.tam[aria-checked='true']::before { opacity: 1; transform: scale(1); background: var(--vidro); }
+.hero__add { margin-top: calc(var(--u) * 22); }
+.hero__add .botao__preco { display: inline-block; overflow: hidden; vertical-align: bottom; }
+.hero__add .botao__preco > span { display: inline-block; }
+.hero__nota { margin-top: calc(var(--u) * 22); display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.hero__nota strong { font-family: var(--f-titulo); font-size: 15px; font-weight: 800; font-stretch: 85%; }
+.hero__amostras { display: flex; margin-right: 2px; }
+.hero__amostras img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+/* o vão entre as bolinhas é um recorte de verdade (máscara) e não um anel na cor do fundo: na troca de cor o fundo
+   novo aparece pelo vão junto com o resto, sem contorno da cor antiga */
+.hero__amostras img:not(:last-child) {
+  -webkit-mask: radial-gradient(circle at calc(100% + 5px) 50%, transparent 14.5px, #000 15px);
+  mask: radial-gradient(circle at calc(100% + 5px) 50%, transparent 14.5px, #000 15px);
+}
+.hero__amostras img + img { margin-left: -8px; }
+.hero__detalhes { display: inline-flex; gap: 6px; margin-top: calc(var(--u) * 16); font-size: 13px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: text-decoration-color 0.3s, gap 0.3s var(--c-out); }
+@media (hover: hover) { .hero__detalhes:hover { text-decoration-color: currentColor; gap: 10px; } }
+.hero__floco { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
+
+.hero__cores { right: var(--margem); top: calc(var(--u) * 150 + 24px); display: grid; gap: 10px; }
+.ficha {
+  display: flex; align-items: center; gap: 12px; width: clamp(196px, calc(var(--u) * 236), 260px); padding: 6px 16px 6px 6px; border-radius: 999px;
+  background: var(--vidro);
+  text-align: left; transition: background 0.35s var(--c-out), translate 0.35s var(--c-out), scale 0.35s var(--c-out), color 0.35s var(--c-out);
+}
+.ficha__img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none; transition: scale 0.45s var(--c-out); }
+.ficha__nome { display: block; font-family: var(--f-titulo); font-weight: 800; font-stretch: 85%; font-size: 14px; letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.1; }
+.ficha__preco { display: block; margin-top: 2px; font-size: 12px; opacity: 0.7; font-variant-numeric: tabular-nums; }
+.ficha.is-ativa { background: var(--vidro-ativo); }
+@media (hover: hover) {
+  .ficha:not(.is-ativa):hover { background: color-mix(in srgb, var(--vidro-ativo) 55%, transparent); translate: -4px 0; }
+  .ficha:hover .ficha__img { scale: 1.06; }
+}
+.ficha:active { scale: 0.97; }
+.hero__linha { left: var(--margem); bottom: calc(var(--u) * 30 + 6px); font-size: 12.5px; line-height: 1.5; opacity: 0.86; }
+
+/* Celular: o título no alto, as cores numa coluna à direita do capuz, a modelo no meio (recorte de no máximo 663 px de
+   altura: as mangas, a 9–90% da largura dele, cabem em 390 px) e, no pé, os tamanhos e o "Adicionar" sobre o fundo:
+   a modelo some num degradê da cor do fundo (.hero__pe), que na troca ganha a camada da cor nova recortada pelo mesmo
+   círculo do fundo (motion/hero.js). */
+.hero__pe { display: none; }
+@media (max-width: 899px) {
+  .hero__fixo { min-height: 520px; }
+  .hero__marca { top: 40%; width: 150vw; }
+  .hero__modelos { top: 190px; bottom: auto; height: min(663px, calc(100% - 150px)); }
+  .hero__pe {
+    --pe-solido: 128px; --pe-fim: clamp(188px, 34svh, 250px);
+    display: block; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, var(--hero-fundo) var(--pe-solido), transparent var(--pe-fim));
+  }
+  .hero__pe-novo { position: absolute; inset: 0; background: linear-gradient(to top, var(--pe-cor, transparent) var(--pe-solido), transparent var(--pe-fim)); clip-path: circle(0 at 100% 0); }
+  .hero__info { inset: 0; width: auto; pointer-events: none; }
+  .hero__info > * { pointer-events: auto; }
+  .hero__olho { position: absolute; top: 76px; left: var(--margem); right: calc(var(--margem) + 60px); }
+  .hero__olho span + span { display: none; }
+  .hero__titulo { position: absolute; top: 94px; left: var(--margem); margin: 0; font-size: 64px; }
+  .hero__detalhes { position: absolute; top: 146px; left: var(--margem); margin: 0; padding: 12px 0; }
+  .hero__tamanhos { position: absolute; left: var(--margem); right: var(--margem); bottom: calc(78px + env(safe-area-inset-bottom, 0px)); margin: 0; justify-content: space-between; }
+  .hero__rotulo { min-width: 0; margin-right: auto; font-size: 13px; }
+  .tam { width: 44px; height: 44px; font-size: 14px; }
+  .hero__add { position: absolute; left: var(--margem); right: var(--margem); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); margin: 0; }
+  .hero__add .botao__preco { margin-left: auto; }
+  .hero__nota, .hero__linha { display: none; }
+  .hero__cores { top: 72px; right: var(--margem); left: auto; bottom: auto; display: grid; gap: 6px; }
+  .ficha { width: 48px; height: 48px; padding: 4px; gap: 0; border-radius: 50%; background: transparent; }
+  .ficha.is-ativa { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; }
+  .ficha__img { width: 40px; height: 40px; }
+  .ficha__txt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}

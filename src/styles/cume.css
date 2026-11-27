@@ -1,0 +1,35 @@
+/* Avaliações: palco preso no escuro, a montanha à direita com a trilha e as bandeiras em SVG por cima. */
+.cume { position: relative; height: 340svh; background: #1f272f; color: var(--branco); } /* o céu da foto, medido */
+.cume__palco { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.cume__montanha { position: absolute; right: -2vw; bottom: 0; width: min(72vw, calc((100svh - 70px) * 1.5)); aspect-ratio: 3 / 2; }
+.cume__foto { -webkit-mask: linear-gradient(to right, transparent 0%, #000 22%), linear-gradient(to top, transparent 0%, #000 22%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask: linear-gradient(to right, transparent 0%, #000 22%) intersect, linear-gradient(to top, transparent 0%, #000 22%, #000 88%, transparent 100%); }
+.cume__etiquetas { position: absolute; inset: 0; pointer-events: none; }
+.etq { position: absolute; translate: -50% calc(-100% - 8px); height: 24px; padding: 0 10px; border-radius: 999px; background: var(--branco); color: var(--tinta); font-size: 12px; font-weight: 600; line-height: 24px; white-space: nowrap; font-variant-numeric: tabular-nums; opacity: 0; scale: 0.6; transform-origin: 50% 100%; transition: opacity 0.3s, scale 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.12s; }
+.etq.is-on { opacity: 1; scale: 1; }
+.etq--cume { background: var(--sinal); color: var(--branco); translate: 12px calc(-100% - 8px); }
+.cume__foto { width: 100%; height: 100%; object-fit: cover; }
+.cume__trilha { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.cume__lado { position: absolute; left: max(var(--margem), (100vw - 1280px) / 2); top: 50%; translate: 0 -50%; width: min(400px, 34vw); display: flex; flex-direction: column; gap: 16px; }
+.cume__nota { display: flex; align-items: baseline; gap: 10px; padding-bottom: 18px; border-bottom: 1px solid var(--linha-clara); font-size: 13px; color: rgb(247 248 250 / 0.7); }
+.cume__nota strong { font-family: var(--f-titulo); font-weight: 800; font-stretch: 80%; font-size: 44px; line-height: 1; color: var(--branco); font-variant-numeric: tabular-nums; }
+.cume__flocos { letter-spacing: 0.12em; color: var(--branco); }
+.cume__cartoes { position: relative; min-height: 230px; }
+.cartao { position: absolute; inset: 0 0 auto 0; padding: 18px; border-radius: 14px; background: #2a323c; box-shadow: inset 0 0 0 1px rgb(247 248 250 / 0.08); opacity: 0; translate: 0 18px; filter: blur(6px); transition: opacity 0.45s var(--c-out), translate 0.6s var(--c-out), filter 0.5s var(--c-out); pointer-events: none; }
+.cartao.is-ativo { opacity: 1; translate: 0 0; filter: blur(0); pointer-events: auto; }
+.cartao.is-saindo { opacity: 0; translate: 0 -14px; filter: blur(6px); transition-duration: 0.3s; }
+.cartao__topo { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; color: rgb(247 248 250 / 0.66); }
+.cartao__alt { font-size: 12px; color: rgb(247 248 250 / 0.66); text-align: right; }
+.cartao__frase { margin-top: 10px; font-size: 17px; line-height: 1.45; }
+.cartao__quem { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 13px; line-height: 1.3; }
+.cartao__ini { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgb(247 248 250 / 0.14); font-size: 12px; font-weight: 600; }
+.cartao__usou { margin-top: 12px; display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 999px; background: rgb(247 248 250 / 0.1); font-size: 12px; transition: background 0.3s; }
+@media (hover: hover) { :where(html:not(.rolando)) .cartao__usou:hover { background: rgb(247 248 250 / 0.22); } }
+/* trilha: a linha apagada inteira, a acesa por cima, o ponto de luz e as bandeiras */
+.trilha__fundo { fill: none; stroke: rgb(247 248 250 / 0.14); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.trilha__acesa { fill: none; stroke: var(--branco); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.55)); }
+.trilha__luz { fill: var(--branco); filter: drop-shadow(0 0 10px rgb(255 255 255 / 0.9)); }
+.bandeira { opacity: 0; transform-box: fill-box; transform-origin: 0% 100%; scale: 1 0; transition: scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s; }
+.bandeira.is-on { opacity: 1; scale: 1 1; }
+.bandeira__mastro { stroke: var(--branco); stroke-width: 1.4; }
+.bandeira__pano { fill: var(--branco); }
+.bandeira--cume .bandeira__pano { fill: var(--sinal); }

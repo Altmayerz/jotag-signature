@@ -1,0 +1,109 @@
+/* Peças comuns das seções: contêiner, título com máscara, rótulo, pílula, cartão de produto (claro e escuro), selo,
+   favorito, pontos de cor e o painel de tamanhos que sobe no hover. Escala de site (docs/escala.md) em --su. */
+.secao { position: relative; padding: calc(140 * var(--su)) 0; }
+.wrap { width: min(1280px, 100% - 2 * var(--margem)); margin-inline: auto; }
+.secao__topo { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: calc(48 * var(--su)); }
+.titulo { font-family: var(--f-titulo); font-weight: 800; font-stretch: 78%; font-size: calc(64 * var(--su)); line-height: 0.9; letter-spacing: -0.01em; text-transform: uppercase; }
+.titulo--fecho { font-size: calc(80 * var(--su)); }
+.rotulo { font-family: var(--f-titulo); font-stretch: 125%; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
+/* linhas do título: cada uma numa máscara com folga para acento e descendente (motion/revela.js) */
+.revela__linha { display: block; overflow: hidden; padding: 0.12em 0.04em 0.08em; margin: -0.12em -0.04em -0.08em; }
+.revela__txt { display: block; }
+html.js .revela__txt { transform: translateY(112%); }
+html.js .revela.is-dentro .revela__txt { transform: none; transition: transform 1s var(--c-out); }
+html.js .revela.is-dentro .revela__linha:nth-child(2) .revela__txt { transition-delay: 0.08s; }
+html.js .revela.is-dentro .revela__linha:nth-child(3) .revela__txt { transition-delay: 0.16s; }
+html.reduzido .revela__txt, html.pronto .revela__txt { transform: none !important; }
+
+/* pílula: link de texto em cápsula, com fundo que enche da esquerda no hover */
+.pilula {
+  position: relative; display: inline-flex; align-items: center; gap: 10px; height: 38px; padding: 0 16px; border-radius: 999px;
+  background: var(--tinta); color: var(--branco); font-size: 13.5px; font-weight: 500; white-space: nowrap; overflow: hidden; isolation: isolate;
+  transition: color 0.4s var(--c-out), translate 0.3s var(--c-out), scale 0.3s var(--c-out);
+}
+.pilula::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--sinal); transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--c-out); }
+.pilula--clara { background: var(--branco); color: var(--tinta); }
+.pilula__preco { opacity: 0.55; font-variant-numeric: tabular-nums; }
+.pilula .botao__seta { width: 28px; height: 28px; margin: 0 -11px 0 2px; }
+.pilula .botao__seta svg { width: 14px; height: 14px; }
+@media (hover: hover) {
+  :where(html:not(.rolando)) .pilula:hover { color: var(--branco); translate: 0 -1px; }
+  :where(html:not(.rolando)) .pilula:hover::before { transform: scaleX(1); }
+  :where(html:not(.rolando)) .pilula:hover .botao__seta svg { rotate: 45deg; }
+}
+.pilula:active { scale: 0.96; }
+
+/* cartão de produto */
+.card { position: relative; display: flex; flex-direction: column; gap: 12px; }
+.card__foto { position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: var(--fundo-card, #d9dde3); isolation: isolate; cursor: pointer; }
+.trilho .card__foto { cursor: inherit; }
+.card__tam.is-dica .card__dica { color: var(--sinal); font-weight: 600; }
+.card__img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 32%; transition: scale 1s var(--c-out); }
+.card__link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.card__link:focus-visible { outline-offset: -3px; }
+.card .selo, .card .fav, .card__tam { z-index: 2; }
+.selo { position: absolute; top: 10px; left: 10px; height: 24px; padding: 0 10px; border-radius: 999px; background: var(--tinta); color: var(--branco); font-size: 12px; font-weight: 600; line-height: 24px; }
+.selo--claro { background: var(--branco); color: var(--tinta); }
+.fav { position: absolute; top: 8px; right: 8px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: rgb(255 255 255 / 0.78); color: var(--tinta); transition: background 0.3s, scale 0.3s var(--c-out); }
+.fav svg { width: 17px; height: 17px; fill: transparent; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; transition: fill 0.3s var(--c-out), stroke 0.3s; }
+.fav[aria-pressed='true'] svg { fill: var(--sinal); stroke: var(--sinal); }
+@media (hover: hover) { :where(html:not(.rolando)) .fav:hover { background: rgb(255 255 255 / 0.85); scale: 1.06; } }
+.fav:active { scale: 0.9; }
+.fav.is-pulo svg { animation: fav-pulo 0.5s var(--c-out); }
+@keyframes fav-pulo { 0% { scale: 1; } 35% { scale: 1.35; } 100% { scale: 1; } }
+.card__tam {
+  position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 12px 12px 10px; border-radius: 12px; background: rgb(247 248 250 / 0.97);
+  color: var(--tinta); text-align: center;
+  translate: 0 calc(100% + 12px); opacity: 0; transition: translate 0.5s var(--c-out), opacity 0.3s var(--c-out);
+}
+.card__dica { font-size: 12px; color: rgb(18 20 24 / 0.6); }
+.card__tams { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; margin-top: 8px; }
+.card__tams button { min-width: 34px; height: 30px; padding: 0 8px; border-radius: 999px; font-size: 12.5px; font-weight: 500; transition: background 0.25s, color 0.25s, scale 0.2s; }
+@media (hover: hover) { .card__tams button:hover { background: var(--tinta); color: var(--branco); } }
+.card__tams button:active { scale: 0.92; }
+.card__tam.is-feito .card__dica { color: var(--tinta); font-weight: 600; }
+@media (hover: hover) {
+  :where(html:not(.rolando)) .card__foto:hover .card__img, .card__foto:has(:focus-visible) .card__img { scale: 1.42; }
+  :where(html:not(.rolando)) .card__foto:hover .card__tam, .card__foto:has(:focus-visible) .card__tam { translate: 0 0; opacity: 1; }
+}
+html.toque .card__foto.is-aberto .card__tam { translate: 0 0; opacity: 1; }
+html.toque .card__foto.is-aberto .card__img { scale: 1.3; }
+.card__info { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; row-gap: 2px; align-items: baseline; }
+.card__nome { font-family: var(--f-titulo); font-weight: 800; font-stretch: 85%; font-size: 15px; letter-spacing: 0.01em; text-transform: uppercase; }
+.card__preco { font-size: 14px; font-variant-numeric: tabular-nums; }
+.card__tipo { grid-column: 1 / -1; font-size: 12.5px; color: var(--apagado); }
+.card__cores { grid-column: 1 / -1; display: flex; align-items: center; gap: 5px; margin-top: 6px; font-size: 12px; color: var(--apagado); }
+.card__cores span:last-child { margin-left: 4px; }
+.ponto { width: 10px; height: 10px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgb(18 20 24 / 0.18); }
+
+.card--escuro { color: var(--branco); }
+.card--escuro .card__foto { --fundo-card: #1d2127; transition: background 0.5s var(--c-out); }
+.card--escuro .card__tipo, .card--escuro .card__cores { color: rgb(247 248 250 / 0.6); }
+.card--escuro .ponto { box-shadow: inset 0 0 0 1px rgb(247 248 250 / 0.25); }
+.card--escuro .fav { background: rgb(247 248 250 / 0.14); color: var(--branco); }
+@media (hover: hover) { :where(html:not(.rolando)) .card--escuro .fav:hover { background: rgb(247 248 250 / 0.24); } }
+@media (hover: hover) { :where(html:not(.rolando)) .card--escuro .card__foto:hover .card__img, .card--escuro .card__foto:has(:focus-visible) .card__img { scale: 1.16; } }
+html.toque .card--escuro .card__foto.is-aberto .card__img { scale: 1.12; }
+
+/* entrada comum por marco (motion/entra.js): sobe e sai do desfoque */
+html.js [data-entra-sec] { opacity: 0; translate: 0 24px; filter: blur(6px); }
+html.js [data-entra-sec].is-dentro { opacity: 1; translate: 0 0; filter: blur(0); transition: opacity 0.9s var(--c-out), translate 1s var(--c-out), filter 0.9s var(--c-out); }
+html.reduzido [data-entra-sec], html.pronto [data-entra-sec] { opacity: 1 !important; translate: none !important; filter: none !important; }
+
+/* seção que sobe por cima da cena presa anterior: camada opaca com borda desenhada (cantos redondos e sombra), nunca
+   véu. A anterior tem --cobre a mais de altura e termina a animação dela antes de ser coberta. */
+.cobre { position: relative; z-index: 2; margin-top: calc(-1 * var(--cobre)); border-radius: 28px 28px 0 0; overflow: clip; box-shadow: 0 -28px 60px -24px rgb(10 12 16 / 0.32); }
+
+/* formulário de lista (drop e rodapé, em todas as páginas): campo em pílula com o botão dentro */
+.lista { position: relative; display: flex; align-items: center; width: min(460px, 100%); height: 56px; padding: 4px 4px 4px 20px; border-radius: 999px; background: rgb(20 23 28 / 0.55); box-shadow: inset 0 0 0 1px rgb(247 248 250 / 0.18); transition: box-shadow 0.3s, background 0.3s; }
+.lista:focus-within { box-shadow: inset 0 0 0 1.5px rgb(247 248 250 / 0.6); background: rgb(20 23 28 / 0.7); }
+.lista__campo { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; color: inherit; font: inherit; font-size: 14.5px; }
+.lista__campo::placeholder { color: rgb(247 248 250 / 0.55); }
+.lista__botao { height: 48px; padding-left: 18px; font-size: 14px; }
+.lista__msg { position: absolute; left: 20px; top: calc(100% + 8px); font-size: 12.5px; }
+.lista.is-erro { box-shadow: inset 0 0 0 1.5px var(--sinal); }
+.lista.is-erro .lista__msg { color: var(--sinal); }
+.lista.is-ok .lista__msg { color: inherit; }
+.lista--clara { background: var(--branco); box-shadow: inset 0 0 0 1px rgb(18 20 24 / 0.08); color: var(--tinta); }
+.lista--clara .lista__campo::placeholder { color: rgb(18 20 24 / 0.45); }
+.lista--clara:focus-within { box-shadow: inset 0 0 0 1.5px var(--tinta); background: var(--branco); }

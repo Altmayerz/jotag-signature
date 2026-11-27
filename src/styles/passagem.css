@@ -1,0 +1,6 @@
+/* Passagem para o checkout: a tela ardósia com o logo e "Checkout". Na loja ela nasce como um círculo que cresce do
+   botão "Finalizar compra"; no checkout ela já está na primeira pintura (html.chegando) e sobe quando a página monta. */
+.passagem { position: fixed; inset: 0; z-index: 90; display: none; place-items: center; align-content: center; gap: 10px; background: var(--ardosia); color: var(--branco); pointer-events: none; }
+.passagem.is-on, html.chegando .passagem { display: grid; }
+.passagem__logo { width: min(150px, 30vw); height: auto; fill: currentColor; }
+.passagem__txt { font-size: 13px; letter-spacing: 0.02em; opacity: 0.8; text-align: center; }

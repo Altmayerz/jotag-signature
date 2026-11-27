@@ -1,0 +1,13 @@
+body:has(.hero) > .topo {position:absolute!important;top:0;}
+.hero__olho span:first-child{font-family:Georgia,serif;letter-spacing:.12em}
+.signature-kicker{font:500 clamp(10px,1vw,15px)/1.5 var(--hero-type);text-transform:uppercase;letter-spacing:.18em;color:#dfc5a4;margin-top:clamp(12px,3vh,32px)}
+.signature-kicker::after{content:'';display:block;width:44px;height:1px;background:#dfc5a4;margin-top:12px}
+.hero__titulo{font-family:Georgia,'Times New Roman',serif!important;font-style:italic;font-weight:400!important;letter-spacing:-.065em!important;color:#f8efdf!important;font-size:clamp(48px,7.5vw,120px)!important;line-height:1.14!important}
+.signature-copy{font-family:var(--hero-type);font-size:clamp(15px,1.35vw,21px);line-height:1.5;color:#fff;max-width:34ch}
+.signature-cta{text-transform:uppercase;letter-spacing:.14em;background:#f0e1ca;color:#211910}
+.signature-hand{font-family:'Segoe Script','Brush Script MT','Apple Chancery',cursive;font-style:italic;font-weight:400;letter-spacing:-.07em}
+.signature-campaign-logo{width:clamp(85px,10vw,150px);max-width:none;top:clamp(30px,7vh,90px)}
+.signature-campaign-logo img{width:100%;height:auto;display:block;filter:drop-shadow(0 2px 8px #0008)}
+.signature-contacts{display:grid;gap:12px;width:100%}.signature-contact{display:flex;align-items:center;gap:12px;text-decoration:none}.signature-contact img{width:54px;height:54px;border-radius:50%;object-fit:cover}.signature-contact span{display:grid;gap:4px}.signature-contact small{color:#c7bfb4;font-size:12px}
+.lookbook{height:auto;background:#29231e;padding:clamp(48px,7vw,100px) 0}.lookbook__palco{position:relative;height:auto;overflow:visible;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);padding-block:0;align-items:center}.lookbook__colunas{height:auto;gap:10px}.lookbook .coluna{transform:none!important;gap:10px}.lookbook .lk:nth-child(n+3){display:none}.lookbook .coluna--meio{margin-top:28px}.lookbook .lk{border-radius:3px}.lookbook__txt{padding:16px 0}
+@media(max-width:899px){.hero__titulo{font-size:clamp(40px,11vw,68px)!important}.signature-kicker{margin-top:8px}.signature-kicker::after{margin-top:6px}.signature-cta{letter-spacing:.09em}.lookbook__palco{grid-template-columns:1fr;grid-template-rows:auto auto;gap:22px}.lookbook__txt{order:-1}.signature-campaign-logo{top:28px}.hero__info{width:auto}}

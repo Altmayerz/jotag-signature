@@ -1,0 +1,54 @@
+/* Folha única do site, ligada no <head> do index.html (segura a primeira pintura até chegar). Importada pelo JS, no
+   dev do Vite ela só entraria depois dos módulos e a página apareceria crua por um instante. */
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/geist/wght.css';
+@import './tokens.css';
+@import './base.css';
+@import './abertura.css';
+@import './topo.css';
+@import './hero.css';
+@import './sacola.css';
+@import './comum.css';
+@import './colecao.css';
+@import './montanha.css';
+@import './sobe.css';
+@import './solta.css';
+@import './acessorios.css';
+@import './lookbook.css';
+@import './cume.css';
+@import './drop.css';
+@import './rodape.css';
+@import './passagem.css';
+@import './celular.css';
+@import './signature-v2.css';
+@import './signature-v5.css';
+@import './signature-v6.css';
+@import './signature-v8.css';
+@import './signature-v9.css';
+
+@import './signature-v10.css';
+.botao{padding-inline:22px;justify-content:center;}
+.botao__seta{display:none!important;}
+.signature-cta,.pilula{justify-content:center;}
+
+/* V15: stable hero layers; opacity is controlled exclusively by GSAP. */
+.hero__modelos { isolation: isolate; }
+.hero__modelo { transition: none !important; animation: none !important; }
+.signature-film-burn { display: none !important; }
+
+/* V16: editorial signature, independent of the original photographs. */
+.sobe__marca-editorial,.sobe__legenda-editorial{position:absolute;left:50%;translate:-50% -50%;width:48%;z-index:3;pointer-events:none;color:#80582e;display:flex;align-items:center;justify-content:center;gap:clamp(8px,1.4vw,24px);margin:0;white-space:nowrap;line-height:1.35;}
+.sobe__marca-editorial{top:12%;font-size:clamp(26px,3.6vw,64px);}
+.sobe__marca-editorial img{width:clamp(54px,7vw,112px);height:clamp(38px,5vw,80px);object-fit:contain;filter:brightness(0) saturate(100%);}
+.sobe__legenda-editorial{top:88%;font-size:clamp(26px,3.6vw,64px);}
+@media(max-width:899px){
+.sobe__marca-editorial,.sobe__legenda-editorial{position:relative;left:auto;top:auto;translate:none;width:100%;grid-column:1/-1;white-space:normal;text-align:center;}
+.sobe__marca-editorial{grid-row:1;font-size:clamp(25px,8vw,42px);}
+.sobe__janela{grid-row:2;}.sobe__lateral{grid-row:3;}.sobe__legenda-editorial{grid-row:4;font-size:clamp(25px,8vw,42px);}
+}
+@media(max-width:899px) and (prefers-reduced-motion:no-preference){
+.sobe__marca-editorial,.sobe__legenda-editorial{position:absolute;left:5%;width:90%;}
+}
+
+
+.signature-footer a:focus-visible{outline:2px solid #c4ad90;outline-offset:4px;}

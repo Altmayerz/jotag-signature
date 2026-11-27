@@ -1,0 +1,29 @@
+/* Abertura: duas portas na cor do fundo do hero cobrem a página; por cima, o logo e a altitude num contador de rodas.
+   O hero fica montado por baixo desde o começo (fotos decodificadas e pintadas), então abrir as portas é só
+   movimento (transform), sem repintar nada. */
+.abertura { display: none; }
+html.abrindo .abertura { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; color: var(--tinta); pointer-events: none; }
+.abertura__portas { position: absolute; inset: 0; transform: rotate(-7deg); }
+.porta { position: absolute; left: -60%; width: 220%; height: 130vmax; background: #dcdfe3; will-change: transform; }
+.porta--cima { bottom: 50%; }
+.porta--baixo { top: 50%; }
+.abertura__marca { position: relative; width: min(46vw, calc(var(--u) * 560)); will-change: transform, opacity; }
+.abertura__logo { width: 100%; height: auto; fill: currentColor; }
+.abertura__alt { position: absolute; left: var(--margem); bottom: calc(var(--u) * 34); display: flex; align-items: baseline; gap: 6px; font-family: var(--f-titulo); font-weight: 800; font-stretch: 78%; letter-spacing: -0.01em; will-change: transform, opacity; }
+.abertura__m { font-size: calc(var(--u) * 28); font-stretch: 100%; line-height: 1; }
+
+/* contador de rodas: cada casa é uma fita de 0 a 9 (e o 0 de novo, para a volta) que desliza por trás de uma
+   janela de 1em; o milhar e o ponto ficam apagados até a altitude passar de 999 */
+.odo { display: inline-flex; align-items: flex-end; font-size: calc(var(--u) * 96); line-height: 1; font-variant-numeric: tabular-nums; }
+.odo__casa { display: inline-block; height: 1em; overflow: hidden; transition: opacity 0.35s var(--c-out); }
+.odo__fita { display: block; will-change: transform; }
+.odo__fita > span { display: block; height: 1em; }
+.odo__ponto { display: inline-block; width: 0.26em; transition: opacity 0.35s var(--c-out); }
+.odo .is-apagado { opacity: 0.2; }
+
+/* enquanto a abertura está na tela, o que entra por marco espera escondido (o resto do hero já está pintado) */
+html.abrindo .hero__titulo .l,
+html.abrindo [data-entra],
+html.abrindo .ficha { opacity: 0; }
+/* o logo e a altitude nascem escondidos e o JS faz a entrada deles (sem isto, piscam inteiros no primeiro quadro) */
+html.abrindo .abertura__marca, html.abrindo .abertura__alt { opacity: 0; }

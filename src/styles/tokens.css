@@ -1,0 +1,41 @@
+/* Cores em papéis (trocáveis por ?tema=), fontes, unidades e curvas. Todo o site lê daqui. */
+:root {
+  /* paleta: papel claro, aço, ardósia, grafite, tinta (quase preto), branco e um acento só, o laranja-sinal */
+  --papel: #f2ede4;
+  --papel-2: #d8c8b4;
+  --aco: #9b7953;
+  --ardosia: #49372d;
+  --grafite: #24201d;
+  --tinta: #171513;
+  --branco: #f7f8fa;
+  --sinal: #a47c51;
+  --linha: rgb(18 20 24 / 0.12);
+  --linha-clara: rgb(247 248 250 / 0.18);
+  --apagado: rgb(18 20 24 / 0.56);
+
+  --f-titulo: 'Archivo Variable', 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --f-corpo: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* unidade de cena (hero, cenas presas, rodapé): acompanha a tela, sem passar do quadro de 1440 × 900 */
+  --u: min(100vw / 1440, 100svh / 900);
+  /* unidade das seções comuns: 1 px de verdade a partir de 1280, encolhe abaixo (docs/escala.md) */
+  --su: min(1px, 100vw / 1280);
+  --margem: 40px;
+  --cobre: 60svh; /* quanto a seção seguinte sobe por cima da cena presa anterior */
+
+  --c-out: cubic-bezier(0.22, 1, 0.36, 1); /* easeOutQuint: tudo que entra */
+  --c-io: cubic-bezier(0.65, 0, 0.35, 1); /* easeInOutCubic: troca de estado */
+  --c-in: cubic-bezier(0.32, 0, 0.67, 0); /* easeInCubic: tudo que sai */
+  --t-s: 0.3s;
+  --t-m: 0.65s;
+}
+@media (max-width: 899px) {
+  :root { --su: min(1px, 100vw / 390); --margem: 20px; --u: min(100vw / 390, 100svh / 760); }
+}
+
+/* temas (paleta trocável ao vivo: ?tema=grafite | noite) */
+html[data-tema='grafite'] { --aco: #8f949b; --ardosia: #3d4146; --papel: #e8e8e7; --papel-2: #dededc; }
+html[data-tema='noite'] { --papel: #1b1e23; --papel-2: #15181c; --tinta: #eef0f3; --linha: rgb(238 240 243 / 0.14); --apagado: rgb(238 240 243 / 0.6); }
+
+:root{--f-titulo: Georgia, "Times New Roman", serif;}
+.hero__serra,.hero__neve{visibility:hidden}.hero__modelo{border-radius:3px;object-fit:cover}.hero__marca{opacity:.18}.hero__nota{display:none}.rodape__palavra{font-size: min(17vw, 220px)!important}.topo__logo{width:70px!important;height:48px!important}.demo-aviso{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#171513;color:#f2ede4;text-align:center;font:11px system-ui;padding:5px;pointer-events:none}.titulo,.hero__titulo{font-weight:400!important;letter-spacing:-.045em!important;}

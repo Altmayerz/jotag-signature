@@ -1,0 +1,32 @@
+/* V6: contemporary editorial typography, scoped to the campaign hero. */
+.hero__info { --hero-type:'Geist Variable', 'Helvetica Neue', Arial, sans-serif; display:flex; flex-direction:column; align-items:flex-start; gap:0; width:min(44vw,620px); }
+.hero__olho { font-family:var(--hero-type); font-weight:500; font-stretch:normal; font-size:11px; letter-spacing:.16em; gap:8px 16px; opacity:1; }
+.hero__olho span + span { border-left:1px solid #f6f0e780; padding-left:16px; }
+.signature-kicker { font:400 14px/1.5 var(--hero-type); font-style:normal; letter-spacing:.02em; margin:clamp(16px,3vh,30px) 0 0; color:#e8dfd0; }
+.hero__titulo { font-family:var(--hero-type)!important; font-weight:400!important; font-stretch:normal!important; font-size:clamp(54px,7.2vw,112px)!important; line-height:1.08!important; letter-spacing:-.065em!important; margin:5px 0 15px!important; }
+.hero__nome { padding:.12em .08em .16em; margin:-.12em -.08em -.16em; }
+.signature-copy { font:400 clamp(15px,1.15vw,18px)/1.55 var(--hero-type); max-width:32ch; color:#f6f0e7; }
+.signature-cta { font:500 13px/1.3 var(--hero-type); letter-spacing:.015em; gap:26px; margin-top:22px; min-height:48px; }
+.hero__linha { font-family:'Geist Variable',Arial,sans-serif; font-size:11px; letter-spacing:.025em; }
+.hero__cores .ficha__nome { font-family:'Geist Variable',Arial,sans-serif; font-weight:500; }
+@media(max-width:899px){
+.hero__info { inset:auto var(--margem) 155px; width:auto; gap:0; }
+.hero__olho { font-size:10px; letter-spacing:.10em; gap:6px 10px; }
+.hero__olho span + span { display:inline; padding-left:10px; }
+.signature-kicker { margin:16px 0 0; font-size:13px; }
+.hero__titulo { font-size:clamp(40px,11.5vw,68px)!important; margin:5px 0 10px!important; }
+.signature-copy { font-size:15px; line-height:1.45; max-width:29ch; }
+.signature-cta { margin-top:16px; min-height:44px; padding:11px 15px; }
+.hero__cores .ficha__nome { font-size:11px; }
+}
+@media(max-width:899px) and (max-height:650px){.hero__info{bottom:135px}.signature-kicker{margin-top:8px}.hero__titulo{font-size:clamp(36px,10vw,54px)!important;margin:3px 0 6px!important}.signature-cta{margin-top:10px}}
+@media(min-width:900px) and (max-height:600px){.signature-kicker{margin-top:8px}.hero__titulo{font-size:clamp(48px,6vw,76px)!important}.signature-cta{margin-top:12px}}
+
+/* Campaign framing: preserve the face in narrow viewports. */
+.hero__modelo[data-modelo] { object-position: 50% 35%; }
+@media(max-width:899px){
+.hero__modelo[data-modelo="breu"]{object-position:76% 30%}
+.hero__modelo[data-modelo="gelo"]{object-position:79% 30%}
+.hero__modelo[data-modelo="cromo"]{object-position:43% 30%}
+.hero__modelo[data-modelo="sinal"]{object-position:72% 30%}
+}

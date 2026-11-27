@@ -1,0 +1,23 @@
+<!-- Próximo drop: foto escura do acampamento, contagem regressiva ao vivo e a lista de espera (motion/drop.js). -->
+<section class="drop" aria-labelledby="drop-titulo" data-cena>
+  <div class="drop__palco">
+  <img class="drop__foto" src="img/drop.webp" alt="" aria-hidden="true" width="1800" height="1200" loading="lazy" decoding="async">
+  <div class="wrap drop__txt">
+    <p class="rotulo">Coleção Signature One</p>
+    <h2 class="titulo" id="drop-titulo" data-revela>Universo<br>Signature</h2>
+    <div class="relogio" data-relogio role="timer" aria-label="Tempo até o lançamento">
+      <p><span data-dias>00</span><small>dias</small></p>
+      <p><span data-horas>00</span><small>horas</small></p>
+      <p><span data-min>00</span><small>min</small></p>
+      <p><span data-seg>00</span><small>seg</small></p>
+    </div>
+    <form class="lista" data-lista novalidate>
+      <label class="sr" for="lista-drop">Seu e-mail</label>
+      <input class="lista__campo" id="lista-drop" name="email" type="email" placeholder="Seu e-mail" autocomplete="email" required>
+      <button class="botao lista__botao" type="submit"><span class="botao__txt">Entrar na lista</span></button>
+      <p class="lista__msg" data-msg aria-live="polite"></p>
+    </form>
+    <p class="drop__nota">Demonstração visual · cadastro não enviado.</p>
+  </div>
+  </div>
+</section>

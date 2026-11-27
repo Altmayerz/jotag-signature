@@ -1,0 +1,10 @@
+/* Lookbook: palco preso; três colunas à esquerda correm em velocidades diferentes, o texto fica parado à direita. */
+.lookbook { position: relative; height: calc(230svh + var(--cobre)); background: #74839a; color: var(--branco); }
+.lookbook__palco { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; gap: calc(48 * var(--su)); padding-inline: max(var(--margem), (100vw - 1280px) / 2); }
+.lookbook__colunas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; height: 100svh; align-items: start; }
+.coluna { display: flex; flex-direction: column; gap: 12px; will-change: transform; }
+.lk { margin: 0; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: var(--ardosia); }
+.lk img { width: 100%; height: 100%; object-fit: cover; transition: scale 0.9s var(--c-out); }
+@media (hover: hover) { :where(html:not(.rolando)) .lk:hover img { scale: 1.05; } }
+.lookbook__txt { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 460px; }
+.lookbook__corpo { font-size: 16px; line-height: 1.55; color: rgb(247 248 250 / 0.86); max-width: 38ch; }

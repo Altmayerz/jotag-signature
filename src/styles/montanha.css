@@ -1,0 +1,9 @@
+/* Montanha: o céu é a cor da seção (o céu da foto foi recortado); o logo fica entre o céu e o pico. */
+.montanha { position: relative; height: 112svh; min-height: 680px; overflow: hidden; color: var(--branco); background: linear-gradient(to bottom, var(--papel) 0%, #c9d1dc 24%, #b3becd 56%, #c9d0da 82%, var(--papel) 100%); isolation: isolate; }
+.montanha__ceu { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 62% 30%, rgb(255 255 255 / 0.35), transparent 70%); }
+.montanha__marca { --w: calc(var(--u) * 980); position: absolute; left: calc(50% - var(--w) * 0.47); top: 1%; width: var(--w); height: auto; opacity: 0.9; will-change: transform; }
+.montanha__pico { position: absolute; left: -2%; right: -2%; bottom: -2%; width: 104%; height: auto; will-change: transform; -webkit-mask: linear-gradient(to top, transparent 0%, #000 16%); mask: linear-gradient(to top, transparent 0%, #000 16%); }
+.montanha__nota { position: absolute; top: calc(var(--u) * 120); max-width: 30ch; font-size: 13px; line-height: 1.45; }
+.montanha__nota--esq { left: var(--margem); }
+.montanha__nota--dir { right: var(--margem); text-align: right; }
+.montanha__titulo { position: absolute; left: var(--margem); bottom: calc(var(--u) * 110); font-family: var(--f-titulo); font-weight: 800; font-stretch: 78%; font-size: min(calc(72 * var(--su)), 9vw); line-height: 0.9; letter-spacing: -0.01em; text-transform: uppercase; text-shadow: 0 2px 26px rgb(18 20 24 / 0.5), 0 1px 3px rgb(18 20 24 / 0.35); }
